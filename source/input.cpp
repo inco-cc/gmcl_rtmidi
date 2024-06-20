@@ -20,7 +20,8 @@ LUA_FUNCTION(GetInputPortCount)
 LUA_FUNCTION(GetInputPortName)
 {
     try {
-        LUA->PushString(mainInput->getPortName(LUA->CheckNumber(1)).c_str());
+        LUA->PushString(mainInput->getPortName(
+            (unsigned int)LUA->CheckNumber(1)).c_str());
     }
     catch (RtMidiError &error) {
         LUA->ThrowError(error.what());
