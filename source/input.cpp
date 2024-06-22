@@ -105,7 +105,7 @@ LUA_FUNCTION(OpenInputPort)
         LUA->Call(2, 1);
 
         if (LUA->GetBool() or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
-            RtMidiIn *input = new RtMidiIn();
+            auto input = new RtMidiIn();
 
             try {
                 input->openPort(port);
