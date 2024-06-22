@@ -13,7 +13,7 @@ LUA_FUNCTION(GetInputPortCount)
     try {
         LUA->PushNumber(mainInput->getPortCount());
     }
-    catch (RtMidiError &error) {
+    catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
     }
 
@@ -26,7 +26,7 @@ LUA_FUNCTION(GetInputPortName)
         LUA->PushString(mainInput->getPortName(
             (unsigned int)LUA->CheckNumber(1)).c_str());
     }
-    catch (RtMidiError &error) {
+    catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
     }
 
@@ -41,7 +41,7 @@ LUA_FUNCTION(IsInputPortOpen)
         LUA->PushBool(portInput.count(port) > 0
             and portInput.at(port)->isPortOpen());
     }
-    catch (RtMidiError &error) {
+    catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
     }
 
@@ -69,7 +69,7 @@ LUA_FUNCTION(CloseInputPort)
                 try {
                     input->closePort();
                 }
-                catch (RtMidiError &error) {
+                catch (const RtMidiError &error) {
                     LUA->ThrowError(error.what());
                 }
             }
@@ -110,7 +110,7 @@ LUA_FUNCTION(OpenInputPort)
             try {
                 input->openPort(port);
             }
-            catch (RtMidiError &error) {
+            catch (const RtMidiError &error) {
                 LUA->ThrowError(error.what());
             }
 

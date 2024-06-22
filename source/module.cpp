@@ -9,7 +9,7 @@ GMOD_MODULE_OPEN()
     try {
         mainInput = new RtMidiIn();
     }
-    catch (RtMidiError &error) {
+    catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
     }
 
