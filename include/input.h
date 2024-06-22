@@ -9,3 +9,4 @@ extern int GetInputPortCount(lua_State*);
 extern int GetInputPortName(lua_State*);
 extern int IsInputPortOpen(lua_State*);
 extern int CloseInputPort(lua_State*);
+extern int OpenInputPort(lua_State*);

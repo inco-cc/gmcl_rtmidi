@@ -12,3 +12,4 @@ These changes were made after the previous version, and will be available in the
 - rtmidi.GetInputPortName
 - rtmidi.IsInputPortOpen
 - rtmidi.CloseInputPort
+- rtmidi.OpenInputPort

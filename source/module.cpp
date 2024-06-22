@@ -23,6 +23,8 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "IsInputPortOpen");
     LUA->PushCFunction(&CloseInputPort);
     LUA->SetField(-2, "CloseInputPort");
+    LUA->PushCFunction(&OpenInputPort);
+    LUA->SetField(-2, "OpenInputPort");
     LUA->SetField(-2, "rtmidi");
 
     return 0;

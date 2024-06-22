@@ -99,3 +99,41 @@ LUA_FUNCTION(CloseInputPort)
 
     return 1;
 }
+
+LUA_FUNCTION(OpenInputPort)
+{
+    const auto port = (unsigned int)LUA->CheckNumber(1);
+
+    if (portInput.count(port) < 1) {
+        LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
+        LUA->GetField(-1, "hook");
+        LUA->GetField(-1, "Run");
+        LUA->PushString("ShouldOpenMIDIInputPort");
+        LUA->PushNumber(port);
+        LUA->Call(2, 1);
+
+        if (LUA->GetBool() or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
+            RtMidiIn *input = new RtMidiIn();
+
+            try {
+                input->openPort(port);
+            }
+            catch (RtMidiError &error) {
+                LUA->ThrowError(error.what());
+            }
+
+            portInput.emplace(port, input);
+
+            LUA->GetField(-2, "Run");
+            LUA->PushString("OnMIDIInputPortOpened");
+            LUA->PushNumber(port);
+            LUA->Call(2, 0);
+
+            return 1;
+        }
+    }
+
+    LUA->PushBool(false);
+
+    return 1;
+}
