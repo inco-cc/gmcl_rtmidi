@@ -70,7 +70,7 @@ LUA_FUNCTION(CloseInputPort)
     const auto should = LUA->GetBool(-1) or LUA->IsType(-1, GarrysMod::Lua::Type::Nil);
 
     if (should and portInput.count(port) != 0) {
-        const auto input = portInput.at(port);
+        auto input = portInput.at(port);
         const auto open = input->isPortOpen();
 
         LUA->PushBool(open);
