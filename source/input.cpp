@@ -37,21 +37,13 @@ LUA_FUNCTION(IsInputPortOpen)
 {
     const auto port = (unsigned int)LUA->CheckNumber(1);
 
-    if (portInput.count(port) > 0) {
-        auto input = portInput.at(port);
-
-        LUA->PushBool(input->isPortOpen());
-
-        if (not LUA->GetBool()) {
-            portInput.erase(port);
-
-            delete input;
-        }
-
-        return 1;
+    try {
+        LUA->PushBool(portInput.count(port) > 0
+            and portInput.at(port)->isPortOpen());
     }
-
-    LUA->PushBool(false);
+    catch (RtMidiError &error) {
+        LUA->ThrowError(error.what());
+    }
 
     return 1;
 }
