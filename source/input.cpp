@@ -60,18 +60,14 @@ LUA_FUNCTION(CloseInputPort)
         LUA->PushNumber(port);
         LUA->Call(2, 1);
 
-        if (LUA->GetBool() or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
+        if (LUA->GetBool(-1) or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
             auto input = portInput.at(port);
 
-            LUA->PushBool(input->isPortOpen());
-
-            if (LUA->GetBool()) {
-                try {
-                    input->closePort();
-                }
-                catch (const RtMidiError &error) {
-                    LUA->ThrowError(error.what());
-                }
+            try {
+                input->closePort();
+            }
+            catch (const RtMidiError &error) {
+                LUA->ThrowError(error.what());
             }
 
             portInput.erase(port);
@@ -82,6 +78,7 @@ LUA_FUNCTION(CloseInputPort)
             LUA->PushString("OnMIDIInputPortClosed");
             LUA->PushNumber(port);
             LUA->Call(2, 0);
+            LUA->PushBool(true);
 
             return 1;
         }
@@ -104,7 +101,7 @@ LUA_FUNCTION(OpenInputPort)
         LUA->PushNumber(port);
         LUA->Call(2, 1);
 
-        if (LUA->GetBool() or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
+        if (LUA->GetBool(-1) or LUA->IsType(-1, GarrysMod::Lua::Type::Nil)) {
             auto input = new RtMidiIn();
 
             try {
@@ -120,6 +117,7 @@ LUA_FUNCTION(OpenInputPort)
             LUA->PushString("OnMIDIInputPortOpened");
             LUA->PushNumber(port);
             LUA->Call(2, 0);
+            LUA->PushBool(true);
 
             return 1;
         }
