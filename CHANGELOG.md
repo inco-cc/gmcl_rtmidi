@@ -13,8 +13,11 @@ These changes were made after the previous version, and will be available in the
 - rtmidi.IsInputPortOpen
 - rtmidi.CloseInputPort
 - rtmidi.OpenInputPort
+- rtmidi.ReceiveMessage
 
-- GM:ShouldCloseInputPort
-- GM:OnInputPortClosed
-- GM:ShouldOpenInputPort
-- GM:OnInpuTPortOpened
+- GM:ShouldCloseMIDIInputPort
+- GM:OnMIDIInputPortClosed
+- GM:ShouldOpenMIDIInputPort
+- GM:OnMIDIInputPortOpened
+- GM:ShouldReceiveMIDIMessage
+- GM:OnMIDIMessageReceived

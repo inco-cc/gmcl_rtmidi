@@ -4,6 +4,7 @@
 #include "GarrysMod/Lua/Interface.h"
 #include "input.h"
 
+
 GMOD_MODULE_OPEN()
 {
     try {
@@ -25,6 +26,8 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "CloseInputPort");
     LUA->PushCFunction(&OpenInputPort);
     LUA->SetField(-2, "OpenInputPort");
+    LUA->PushCFunction(&ReceiveMessage);
+    LUA->SetField(-2, "ReceiveMessage");
     LUA->SetField(-2, "rtmidi");
 
     return 0;
@@ -36,7 +39,23 @@ GMOD_MODULE_CLOSE()
     LUA->PushNil();
     LUA->SetField(-2, "rtmidi");
 
-    delete mainInput;
+    try {
+        delete mainInput;
+    }
+    catch (const RtMidiError &error) {
+        LUA->ThrowError(error.what());
+    }
+
+    for (auto it = portInput.begin(); it != portInput.end(); ) {
+        try {
+            delete it->second;
+        }
+        catch (const RtMidiError &error) {
+            LUA->ThrowError(error.what());
+        }
+
+        it = portInput.erase(it);
+    }
 
     return 0;
 }
