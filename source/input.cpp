@@ -70,7 +70,7 @@ LUA_FUNCTION(CloseInputPort)
     const auto should = LUA->GetBool(-1) or LUA->IsType(-1, GarrysMod::Lua::Type::Nil);
 
     if (should and portInput.count(port) != 0) {
-        auto input = portInput.at(port);
+              auto input = portInput.at(port);
         const auto open = input->isPortOpen();
 
         LUA->PushBool(open);
@@ -82,11 +82,11 @@ LUA_FUNCTION(CloseInputPort)
             catch (RtMidiError &error) {
                 LUA->ThrowError(error.what());
             }
-
-            portInput.erase(port);
-
-            delete input;
         }
+
+        portInput.erase(port);
+
+        delete input;
 
         LUA->GetField(-2, "Run");
         LUA->PushString("OnMIDIInputPortClosed");
