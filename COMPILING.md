@@ -29,7 +29,7 @@ recommended for this project:
 + Linux: [GNU Compiler Collection](https://gcc.gnu.org/)
 + macOS: [LLVM](https://llvm.org/)
 
-It is possible to use alternative toolchains, e.g. GCC/LLVM on Windows,
+> **NOTE**: It is possible to use alternative toolchains, e.g. GCC/LLVM on Windows,
 LLVM on Linux, GCC on macOS etc. but this is outside the scope of this project.
 
 > **NOTE**: Cross compilation is not supported at this time.
