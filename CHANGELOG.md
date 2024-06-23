@@ -8,6 +8,11 @@ The following changes were made after the previous version, and will be availabl
 
 ### Added
 
+- rtmidi_test.lua
+  - An autorun script to quickly test functions and hooks.
+  - Drop in `lua/autorun/client` and run the `rtmidi_` console commands.
+  - Hooks are created to print what is happening and the data being passed.
+
 - rtmidi.GetOutputPortCount
 - rtmidi.GetOutputPortName
 - rtmidi.IsOutputPortOpen

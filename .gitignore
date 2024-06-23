@@ -12,5 +12,7 @@
 !include/**
 !source
 !source/**
+!tests
+!tests/**
 !thirdparty
 !thirdparty/**
