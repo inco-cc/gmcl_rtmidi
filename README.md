@@ -4,6 +4,11 @@ This is a binary module for [Garry's Mod](https://gmod.facepunch.com/) that
 provides real-time MIDI communication through the
 [RtMidi](https://www.music.mcgill.ca/~gary/rtmidi/) library.
 
+## Compiling
+
+Instructions on how to compile this project from source are documented in
+[COMPILING.md](COMPILING.md).
+
 ## Changelog
 
 Changes between versions are documented in [CHANGELOG.md](CHANGELOG.md).

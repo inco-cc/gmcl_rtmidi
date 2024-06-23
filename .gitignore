@@ -4,6 +4,7 @@
 !.gitmodules
 
 !CHANGELOG.md
+!COMPILING.md
 !LICENSE
 !README.md
 !xmake.lua
