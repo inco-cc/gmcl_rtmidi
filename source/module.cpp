@@ -3,12 +3,13 @@
 #include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
 #include "input.h"
-
+#include "output.h"
 
 GMOD_MODULE_OPEN()
 {
     try {
         mainInput = new RtMidiIn();
+        mainOutput = new RtMidiOut();
     }
     catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
@@ -28,6 +29,18 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "OpenInputPort");
     LUA->PushCFunction(&ReceiveMessage);
     LUA->SetField(-2, "ReceiveMessage");
+    LUA->PushCFunction(&GetOutputPortCount);
+    LUA->SetField(-2, "GetOutputPortCount");
+    LUA->PushCFunction(&GetOutputPortName);
+    LUA->SetField(-2, "GetOutputPortName");
+    LUA->PushCFunction(&IsOutputPortOpen);
+    LUA->SetField(-2, "IsOutputPortOpen");
+    LUA->PushCFunction(&CloseOutputPort);
+    LUA->SetField(-2, "CloseOutputPort");
+    LUA->PushCFunction(&OpenOutputPort);
+    LUA->SetField(-2, "OpenOutputPort");
+    LUA->PushCFunction(&SendMessage);
+    LUA->SetField(-2, "SendMessage");
     LUA->SetField(-2, "rtmidi");
 
     return 0;
@@ -41,6 +54,7 @@ GMOD_MODULE_CLOSE()
 
     try {
         delete mainInput;
+        delete mainOutput;
     }
     catch (const RtMidiError &error) {
         LUA->ThrowError(error.what());
@@ -55,6 +69,17 @@ GMOD_MODULE_CLOSE()
         }
 
         it = portInput.erase(it);
+    }
+
+    for (auto it = portOutput.begin(); it != portOutput.end(); ) {
+        try {
+            delete it->second;
+        }
+        catch (const RtMidiError &error) {
+            LUA->ThrowError(error.what());
+        }
+
+        it = portOutput.erase(it);
     }
 
     return 0;

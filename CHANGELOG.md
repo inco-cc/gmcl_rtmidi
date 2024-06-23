@@ -6,6 +6,22 @@ All notable changes to this project are documented in this file.
 
 The following changes were made after the previous version, and will be available in the next version.
 
+### Added
+
+- rtmidi.GetOutputPortCount
+- rtmidi.GetOutputPortName
+- rtmidi.IsOutputPortOpen
+- rtmidi.CloseOutputPort
+- rtmidi.OpenOutputPort
+- rtmidi.SendMessage
+
+- GM:ShouldCloseMIDIOutputPort
+- GM:OnMIDIOutputPortClosed
+- GM:ShouldOpenMIDIOutputPort
+- GM:OnMIDIOutputPortOpened
+- GM:ShouldSendMIDIMessage
+- GM:OnMIDIMessageSent
+
 ## 0.1.0
 
 This marks the very first version of the project!
