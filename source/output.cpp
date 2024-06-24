@@ -137,9 +137,8 @@ LUA_FUNCTION(SendMessage)
 
         std::vector<unsigned char> message;
 
-        for (int i = 2; i < LUA->Top() + 1; i++) {
+        for (int i = 2; i < LUA->Top() + 1; i++)
             message.push_back((unsigned char)LUA->CheckNumber(i));
-        }
 
         const auto size = message.size();
 
@@ -150,9 +149,8 @@ LUA_FUNCTION(SendMessage)
             LUA->PushString("ShouldSendMIDIMessage");
             LUA->PushNumber(port);
 
-            for (const auto byte : message) {
+            for (const auto byte : message)
                 LUA->PushNumber(byte);
-            }
 
             LUA->Call(2 + size, 1);
 
@@ -168,9 +166,8 @@ LUA_FUNCTION(SendMessage)
                 LUA->PushString("OnMIDIMessageSent");
                 LUA->PushNumber(port);
 
-                for (const double byte : message) {
+                for (const double byte : message)
                     LUA->PushNumber(byte);
-                }
 
                 LUA->Call(2 + size, 0);
                 LUA->PushBool(true);

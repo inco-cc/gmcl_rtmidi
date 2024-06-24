@@ -72,14 +72,13 @@ LUA_FUNCTION(CloseInputPort)
 
             std::vector<unsigned char> message;
 
-            while (message.size() > 0) {
+            while (message.size() > 0)
                 try {
                     input->getMessage(&message);
                 }
                 catch (const RtMidiError &error) {
                     LUA->ThrowError(error.what());
                 }
-            }
 
             portInput.erase(port);
 
@@ -176,9 +175,8 @@ LUA_FUNCTION(ReceiveMessage)
             LUA->PushNumber(port);
             LUA->PushNumber(deltaTime);
 
-            for (const auto byte : message) {
+            for (const auto byte : message)
                 LUA->PushNumber(byte);
-            }
 
             LUA->Call(3 + size, 1);
 
@@ -188,9 +186,8 @@ LUA_FUNCTION(ReceiveMessage)
                 LUA->PushNumber(port);
                 LUA->PushNumber(deltaTime);
 
-                for (const double byte : message) {
+                for (const double byte : message)
                     LUA->PushNumber(byte);
-                }
 
                 LUA->Call(3 + size, 0);
                 LUA->PushBool(true);
