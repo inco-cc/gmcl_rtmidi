@@ -6,7 +6,21 @@ All notable changes to this project are documented in this file.
 
 The following changes were made after the previous version, and will be available in the next version.
 
+## 0.2.0
+
+This version introduces output variants of the input functions and hooks that
+were introduced in version `0.1.0`.
+
+There is also a new autorun script to quickly test the module using console
+commands with verbose output.
+
+This version was released on June 27, 2024.
+
 ### Added
+
+- COMPILE.md
+  - A supplementary guide on how to compile this project from source.
+  - Still a work in progress, but it covers the essentials.
 
 - rtmidi_test.lua
   - An autorun script to quickly test functions and hooks.
