@@ -6,3 +6,4 @@
 extern std::map<int, const char*> controlName;
 
 extern int GetControlName(lua_State*);
+extern int GetControlBitSignificance(lua_State*);

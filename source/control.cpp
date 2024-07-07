@@ -69,3 +69,17 @@ LUA_FUNCTION(GetControlName)
 
     return 1;
 }
+
+LUA_FUNCTION(GetControlBitSignificance)
+{
+    const auto control = (int)LUA->CheckNumber(1);
+
+    if (control >= 0x20 and control <= 0x3F)
+        LUA->PushNumber(0);
+    else if (control == 0x62 or control == 0x64)
+        LUA->PushNumber(0);
+    else
+        LUA->PushNumber(1);
+
+    return 1;
+}

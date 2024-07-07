@@ -53,6 +53,8 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "GetMessageChannel");
     LUA->PushCFunction(&GetControlName);
     LUA->SetField(-2, "GetControlName");
+    LUA->PushCFunction(&GetControlBitSignificance);
+    LUA->SetField(-2, "GetControlBitSignificance");
     LUA->SetField(-2, "rtmidi");
 
     for (const auto &pair : messageName) {
