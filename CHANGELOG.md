@@ -9,6 +9,8 @@ The following changes were made after the previous version, and will be availabl
 ### Added
 
 - rtmidi.GetMessageName
+- rtmidi.GetMessageTypeName
+- rtmidi.GetMessageType
 
 - MIDI_MESSAGE_UNDEFINED
 - MIDI_MESSAGE_ALL_SOUND_OFF
@@ -38,6 +40,13 @@ The following changes were made after the previous version, and will be availabl
 - MIDI_MESSAGE_STOP
 - MIDI_MESSAGE_ACTIVE_SENSING
 - MIDI_MESSAGE_SYSTEM_RESET
+
+- MIDI_MESSAGE_TYPE_UNDEFINED
+- MIDI_MESSAGE_TYPE_CHANNEL_VOICE
+- MIDI_MESSAGE_TYPE_CHANNEL_MODE
+- MIDI_MESSAGE_TYPE_SYSTEM_COMMON
+- MIDI_MESSAGE_TYPE_SYSTEM_REALTIME
+- MIDI_MESSAGE_TYPE_SYSTEM_EXCLUSIVE
 
 ## 0.2.0
 

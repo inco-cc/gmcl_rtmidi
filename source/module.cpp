@@ -44,9 +44,18 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "SendMessage");
     LUA->PushCFunction(&GetMessageName);
     LUA->SetField(-2, "GetMessageName");
+    LUA->PushCFunction(&GetMessageTypeName);
+    LUA->SetField(-2, "GetMessageTypeName");
+    LUA->PushCFunction(&GetMessageType);
+    LUA->SetField(-2, "GetMessageType");
     LUA->SetField(-2, "rtmidi");
 
     for (const auto &pair : messageName) {
+        LUA->PushNumber(pair.first);
+        LUA->SetField(-2, pair.second);
+    }
+
+    for (const auto &pair : messageTypeName) {
         LUA->PushNumber(pair.first);
         LUA->SetField(-2, pair.second);
     }
@@ -61,6 +70,11 @@ GMOD_MODULE_CLOSE()
     LUA->SetField(-2, "rtmidi");
 
     for (const auto &pair : messageName) {
+        LUA->PushNil();
+        LUA->SetField(-2, pair.second);
+    }
+
+    for (const auto &pair : messageTypeName) {
         LUA->PushNil();
         LUA->SetField(-2, pair.second);
     }

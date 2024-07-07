@@ -35,17 +35,58 @@ std::map<int, const char*> messageName {
     { 0xFF, "MIDI_MESSAGE_SYSTEM_RESET" },
 };
 
+std::map<int, const char*> messageTypeName {
+    { -1, "MIDI_MESSAGE_TYPE_UNDEFINED" },
+    {  0, "MIDI_MESSAGE_TYPE_CHANNEL_VOICE" },
+    {  1, "MIDI_MESSAGE_TYPE_CHANNEL_MODE" },
+    {  2, "MIDI_MESSAGE_TYPE_SYSTEM_COMMON" },
+    {  3, "MIDI_MESSAGE_TYPE_SYSTEM_REALTIME" },
+    {  4, "MIDI_MESSAGE_TYPE_SYSTEM_EXCLUSIVE" },
+};
+
 LUA_FUNCTION(GetMessageName)
 {
     auto message = (int)LUA->CheckNumber(1);
 
-    if (message >= 0x80 and message < 0xF0)
+    if (message >= 0x80 and message <= 0xEF)
         message = 0x80 + std::floor((message - 0x80) / 16) * 16;
 
     if (messageName.count(message) <= 0)
         message = -1;
 
     LUA->PushString(messageName.at(message));
+
+    return 1;
+}
+
+LUA_FUNCTION(GetMessageTypeName)
+{
+    auto messageType = (int)LUA->CheckNumber(1);
+
+    if (messageTypeName.count(messageType) <= 0)
+        messageType = -1;
+
+    LUA->PushString(messageTypeName.at(messageType));
+
+    return 1;
+}
+
+LUA_FUNCTION(GetMessageType)
+{
+    auto message = (int)LUA->CheckNumber(1);
+
+    if (message >= 0x80 and message <= 0xEF)
+        LUA->PushNumber(0);
+    else if (message >= 120 and message <= 127)
+        LUA->PushNumber(1);
+    else if (message >= 0xF1 and message <= 0xF7)
+        LUA->PushNumber(2);
+    else if (message >= 0xF8 and message <= 0xFF)
+        LUA->PushNumber(3);
+    else if (message == 0xF0)
+        LUA->PushNumber(4);
+    else
+        LUA->PushNumber(-1);
 
     return 1;
 }
