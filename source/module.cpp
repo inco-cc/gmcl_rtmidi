@@ -4,6 +4,7 @@
 #include "GarrysMod/Lua/Interface.h"
 #include "input.h"
 #include "output.h"
+#include "message.h"
 
 GMOD_MODULE_OPEN()
 {
@@ -41,7 +42,14 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "OpenOutputPort");
     LUA->PushCFunction(&SendMessage);
     LUA->SetField(-2, "SendMessage");
+    LUA->PushCFunction(&GetMessageName);
+    LUA->SetField(-2, "GetMessageName");
     LUA->SetField(-2, "rtmidi");
+
+    for (const auto &pair : messageName) {
+        LUA->PushNumber(pair.first);
+        LUA->SetField(-2, pair.second);
+    }
 
     return 0;
 }
@@ -51,6 +59,11 @@ GMOD_MODULE_CLOSE()
     LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
     LUA->PushNil();
     LUA->SetField(-2, "rtmidi");
+
+    for (const auto &pair : messageName) {
+        LUA->PushNil();
+        LUA->SetField(-2, pair.second);
+    }
 
     try {
         delete mainInput;
