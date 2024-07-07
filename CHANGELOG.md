@@ -8,10 +8,14 @@ The following changes were made after the previous version, and will be availabl
 
 ### Added
 
+#### Functions
+
 - rtmidi.GetMessageName
 - rtmidi.GetMessageTypeName
 - rtmidi.GetMessageType
 - rtmidi.GetControlName
+
+#### Enumerations
 
 - MIDI_MESSAGE_UNDEFINED
 - MIDI_MESSAGE_ALL_SOUND_OFF
@@ -109,6 +113,8 @@ This version was released on June 27, 2024.
 
 ### Added
 
+#### Files
+
 - COMPILE.md
   - A supplementary guide on how to compile this project from source.
   - Still a work in progress, but it covers the essentials.
@@ -118,12 +124,16 @@ This version was released on June 27, 2024.
   - Drop in `lua/autorun/client` and run the `rtmidi_` console commands.
   - Hooks are created to print what is happening and the data being passed.
 
+#### Functions
+
 - rtmidi.GetOutputPortCount
 - rtmidi.GetOutputPortName
 - rtmidi.IsOutputPortOpen
 - rtmidi.CloseOutputPort
 - rtmidi.OpenOutputPort
 - rtmidi.SendMessage
+
+#### Hooks
 
 - GM:ShouldCloseMIDIOutputPort
 - GM:OnMIDIOutputPortClosed
@@ -136,7 +146,7 @@ This version was released on June 27, 2024.
 
 This marks the very first version of the project!
 
-This version introduces most of the essentials for real-time MIDI input in Lua.
+This version introduces most of the essentials for realtime MIDI input in Lua.
 
 The next version will focus on MIDI output.
 
@@ -144,12 +154,16 @@ This version was released on June 22, 2024.
 
 ### Added
 
+#### Functions
+
 - rtmidi.GetInputPortCount
 - rtmidi.GetInputPortName
 - rtmidi.IsInputPortOpen
 - rtmidi.CloseInputPort
 - rtmidi.OpenInputPort
 - rtmidi.ReceiveMessage
+
+#### Hooks
 
 - GM:ShouldCloseMIDIInputPort
 - GM:OnMIDIInputPortClosed
