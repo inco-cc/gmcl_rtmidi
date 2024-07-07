@@ -9,3 +9,4 @@ extern std::map<int, const char*> messageTypeName;
 extern int GetMessageName(lua_State*);
 extern int GetMessageTypeName(lua_State*);
 extern int GetMessageType(lua_State*);
+extern int GetMessageChannel(lua_State*);

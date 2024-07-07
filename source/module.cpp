@@ -49,6 +49,8 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "GetMessageTypeName");
     LUA->PushCFunction(&GetMessageType);
     LUA->SetField(-2, "GetMessageType");
+    LUA->PushCFunction(&GetMessageChannel);
+    LUA->SetField(-2, "GetMessageChannel");
     LUA->PushCFunction(&GetControlName);
     LUA->SetField(-2, "GetControlName");
     LUA->SetField(-2, "rtmidi");

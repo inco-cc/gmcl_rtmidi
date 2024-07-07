@@ -13,6 +13,7 @@ The following changes were made after the previous version, and will be availabl
 - rtmidi.GetMessageName
 - rtmidi.GetMessageTypeName
 - rtmidi.GetMessageType
+- rtmidi.GetMessageChannel
 - rtmidi.GetControlName
 
 #### Enumerations

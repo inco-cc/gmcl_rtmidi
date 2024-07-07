@@ -90,3 +90,15 @@ LUA_FUNCTION(GetMessageType)
 
     return 1;
 }
+
+LUA_FUNCTION(GetMessageChannel)
+{
+    auto message = (int)LUA->CheckNumber(1);
+
+    if (message >= 0x80 and message <= 0xEF)
+        LUA->PushNumber(message % 16);
+    else
+        LUA->PushNumber(-1);
+
+    return 1;
+}
