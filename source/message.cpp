@@ -73,7 +73,7 @@ LUA_FUNCTION(GetMessageTypeName)
 
 LUA_FUNCTION(GetMessageType)
 {
-    auto message = (int)LUA->CheckNumber(1);
+    const auto message = (int)LUA->CheckNumber(1);
 
     if (message >= 0x80 and message <= 0xEF)
         LUA->PushNumber(0);
@@ -93,7 +93,7 @@ LUA_FUNCTION(GetMessageType)
 
 LUA_FUNCTION(GetMessageChannel)
 {
-    auto message = (int)LUA->CheckNumber(1);
+    const auto message = (int)LUA->CheckNumber(1);
 
     if (message >= 0x80 and message <= 0xEF)
         LUA->PushNumber(message % 16);
