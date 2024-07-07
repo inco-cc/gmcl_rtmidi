@@ -5,6 +5,7 @@
 #include "input.h"
 #include "output.h"
 #include "message.h"
+#include "control.h"
 
 GMOD_MODULE_OPEN()
 {
@@ -48,6 +49,8 @@ GMOD_MODULE_OPEN()
     LUA->SetField(-2, "GetMessageTypeName");
     LUA->PushCFunction(&GetMessageType);
     LUA->SetField(-2, "GetMessageType");
+    LUA->PushCFunction(&GetControlName);
+    LUA->SetField(-2, "GetControlName");
     LUA->SetField(-2, "rtmidi");
 
     for (const auto &pair : messageName) {
@@ -56,6 +59,11 @@ GMOD_MODULE_OPEN()
     }
 
     for (const auto &pair : messageTypeName) {
+        LUA->PushNumber(pair.first);
+        LUA->SetField(-2, pair.second);
+    }
+
+    for (const auto &pair : controlName) {
         LUA->PushNumber(pair.first);
         LUA->SetField(-2, pair.second);
     }
@@ -75,6 +83,11 @@ GMOD_MODULE_CLOSE()
     }
 
     for (const auto &pair : messageTypeName) {
+        LUA->PushNil();
+        LUA->SetField(-2, pair.second);
+    }
+
+    for (const auto &pair : controlName) {
         LUA->PushNil();
         LUA->SetField(-2, pair.second);
     }
