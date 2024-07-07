@@ -117,7 +117,7 @@ This version was released on June 27, 2024.
 
 #### Files
 
-- COMPILE.md
+- COMPILING.md
   - A supplementary guide on how to compile this project from source.
   - Still a work in progress, but it covers the essentials.
 
