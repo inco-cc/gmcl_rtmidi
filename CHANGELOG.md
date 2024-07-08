@@ -126,7 +126,6 @@ This version was released on June 27, 2024.
 - COMPILING.md
   - A supplementary guide on how to compile this project from source.
   - Still a work in progress, but it covers the essentials.
-
 - rtmidi_test.lua
   - An autorun script to quickly test functions and hooks.
   - Drop in `lua/autorun/client` and run the `rtmidi_` console commands.
