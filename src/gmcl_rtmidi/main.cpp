@@ -14,12 +14,27 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
 
 GMOD_MODULE_OPEN()
 {
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
 		LUA->CreateTable();
+			LUA->CreateTable();
+				LUA->PushNumber(RtMidi::Api::UNSPECIFIED);
+				LUA->SetField(-2, "UNSPECIFIED");
+				LUA->PushNumber(RtMidi::Api::MACOSX_CORE);
+				LUA->SetField(-2, "MACOSX_CORE");
+				LUA->PushNumber(RtMidi::Api::LINUX_ALSA);
+				LUA->SetField(-2, "LINUX_ALSA");
+				LUA->PushNumber(RtMidi::Api::UNIX_JACK);
+				LUA->SetField(-2, "UNIX_JACK");
+				LUA->PushNumber(RtMidi::Api::WINDOWS_MM);
+				LUA->SetField(-2, "WINDOWS_MM");
+				LUA->PushNumber(RtMidi::Api::RTMIDI_DUMMY);
+				LUA->SetField(-2, "RTMIDI_DUMMY");
+			LUA->SetField(-2, "API");
 		LUA->SetField(-2, "rtmidi");
 
 	return 0;
