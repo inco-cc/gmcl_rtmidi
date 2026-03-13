@@ -16,11 +16,17 @@
 
 #include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
+#include "gmcl_rtmidi/common.h"
 
 GMOD_MODULE_OPEN()
 {
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
 		LUA->CreateTable();
+			LUA->PushString(GMCL_RTMIDI_VERSION);
+			LUA->SetField(-2, "version");
+			LUA->PushString(RTMIDI_VERSION);
+			LUA->SetField(-2, "version_internal");
+
 			LUA->CreateTable();
 				LUA->PushNumber(RtMidi::Api::UNSPECIFIED);
 				LUA->SetField(-2, "UNSPECIFIED");
