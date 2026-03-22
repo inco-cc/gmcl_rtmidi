@@ -14,27 +14,14 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define GMOD_ALLOW_DEPRECATED
+#pragma once
 
-#include "GarrysMod/Lua/Interface.h"
-#include "gmcl_rtmidi/modules/rtmidi.h"
+namespace gmcl_rtmidi {
 
-GMOD_MODULE_OPEN() {
-	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-		LUA->CreateTable();
-			LUA->PushString(gmcl_rtmidi::rtmidi::version);
-			LUA->SetField(-2, "version");
-			LUA->PushString(gmcl_rtmidi::rtmidi::version_internal);
-			LUA->SetField(-2, "version_internal");
-		LUA->SetField(-2, "rtmidi");
+struct rtmidi {
+public:
+	static const char *version;
+	static const char *version_internal;
+};
 
-	return 0;
-}
-
-GMOD_MODULE_CLOSE() {
-	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-		LUA->PushNil();
-		LUA->SetField(-2, "rtmidi");
-
-	return 0;
-}
+} // namespace gmcl_rtmidi
