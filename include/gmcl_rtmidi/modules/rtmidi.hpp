@@ -18,7 +18,7 @@
 
 namespace gmcl_rtmidi {
 
-struct rtmidi {
+class rtmidi {
 public:
 	static const char *version;
 	static const char *version_internal;

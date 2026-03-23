@@ -30,7 +30,7 @@ target("gmcl_rtmidi")
 	set_basename("rtmidi")
 	set_extension(".dll")
 	add_files("src/gmcl_rtmidi/**.cpp")
-	add_headerfiles("include/gmcl_rtmidi/**.h")
+	add_headerfiles("include/gmcl_rtmidi/**.hpp")
 	add_deps("rtmidi")
 
 	if is_plat("windows", "mingw", "msys") then

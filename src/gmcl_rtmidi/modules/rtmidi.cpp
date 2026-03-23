@@ -15,7 +15,7 @@
  */
 
 #include "RtMidi.h"
-#include "gmcl_rtmidi/modules/rtmidi.h"
+#include "gmcl_rtmidi/modules/rtmidi.hpp"
 
 namespace gmcl_rtmidi {
 

@@ -17,7 +17,7 @@
 #define GMOD_ALLOW_DEPRECATED
 
 #include "GarrysMod/Lua/Interface.h"
-#include "gmcl_rtmidi/modules/rtmidi.h"
+#include "gmcl_rtmidi/modules/rtmidi.hpp"
 
 GMOD_MODULE_OPEN() {
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
