@@ -200,6 +200,9 @@ class RTMIDI_DLL_PUBLIC RtMidi
   */
   static RtMidi::Api getCompiledApiByName( const std::string &name );
 
+  //! Pure virtual getCurrentApi() function.
+  virtual RtMidi::Api getCurrentApi() = 0;
+
   //! Pure virtual openPort() function.
   virtual void openPort( unsigned int portNumber = 0, const std::string &portName = std::string( "RtMidi" ) ) = 0;
 
