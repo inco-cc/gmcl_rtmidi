@@ -36,6 +36,9 @@ protected:
 	static int __tostring(lua_State *state, const int &type);
 	static int GetCurrentAPI(lua_State *state, const int &type);
 	static int GetAPIName(lua_State *state, const int &type);
+	static int IsPortOpen(lua_State *state, const int &type);
+	static int GetPortCount(lua_State *state, const int &type);
+	static int GetPortName(lua_State *state, const int &type);
 
 public:
 	virtual ~RtMidi() {}

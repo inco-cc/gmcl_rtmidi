@@ -63,4 +63,20 @@ int RtMidi::GetAPIName(lua_State *state, const int &type) {
 	return 1;
 }
 
+int RtMidi::IsPortOpen(lua_State *state, const int &type) {
+	LUA->PushBool(get_self<RtMidi>(state, type)->rtmidi->isPortOpen());
+	return 1;
+}
+
+int RtMidi::GetPortCount(lua_State *state, const int &type) {
+	LUA->PushNumber(get_self<RtMidi>(state, type)->rtmidi->getPortCount());
+	return 1;
+}
+
+int RtMidi::GetPortName(lua_State *state, const int &type) {
+	LUA->PushString(get_self<RtMidi>(state, type)->rtmidi->getPortName(
+		(unsigned int)LUA->CheckNumber(2)).c_str());
+	return 1;
+}
+
 } // namespace gmcl_rtmidi

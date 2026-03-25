@@ -30,8 +30,11 @@ public:
 	static int __index(lua_State *state) { return RtMidi::__index(state, type); }
 	static int __gc(lua_State *state) { return RtMidi::__gc(state, type); }
 	static int __tostring(lua_State *state) { return RtMidi::__tostring(state, type); }
-	static int GetAPIName(lua_State *state) { return RtMidi::GetAPIName(state, type); }
 	static int GetCurrentAPI(lua_State *state) { return RtMidi::GetCurrentAPI(state, type); }
+	static int GetAPIName(lua_State *state) { return RtMidi::GetAPIName(state, type); }
+	static int IsPortOpen(lua_State *state) { return RtMidi::IsPortOpen(state, type); }
+	static int GetPortCount(lua_State *state) { return RtMidi::GetPortCount(state, type); }
+	static int GetPortName(lua_State *state) { return RtMidi::GetPortName(state, type); }
 };
 
 } // namespace gmcl_rtmidi
