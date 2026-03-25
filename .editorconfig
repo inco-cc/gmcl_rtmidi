@@ -1,0 +1,5 @@
+# gmcl_rtmidi source code
+[{src,include}/gmcl_rtmidi/**.{c,h}pp]
+indent_size = 4
+indent_style = tab
+insert_final_newline = true

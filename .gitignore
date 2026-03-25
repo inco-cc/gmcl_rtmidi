@@ -4,6 +4,7 @@
 !/licenses
 !/src
 !/tools
+!/.editorconfig
 !/.gitignore
 !/genie.lua
 !/LICENSE
