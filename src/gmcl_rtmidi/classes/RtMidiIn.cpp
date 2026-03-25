@@ -22,8 +22,19 @@ namespace gmcl_rtmidi {
 
 int RtMidiIn::type = -1;
 
-RtMidiIn::RtMidiIn() {
-	rtmidi = new ::RtMidiIn();
+RtMidiIn::RtMidiIn(lua_State *state) {
+	::RtMidi::Api api = ::RtMidi::Api::UNSPECIFIED;
+	const char *client_name = "Garry's Mod Input Client";
+	unsigned int queue_size = 100U;
+
+	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
+		api = (::RtMidi::Api)LUA->CheckNumber(1);
+	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
+		client_name = LUA->CheckString(2);
+	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
+		queue_size = (unsigned int)LUA->CheckNumber(3);
+
+	rtmidi = new ::RtMidiIn(api, client_name, queue_size);
 }
 
 RtMidiIn::~RtMidiIn() {

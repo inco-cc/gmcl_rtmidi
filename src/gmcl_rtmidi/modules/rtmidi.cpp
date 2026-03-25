@@ -28,7 +28,7 @@ const char *rtmidi::version_internal = RTMIDI_VERSION;
 
 int rtmidi::CreateInput(lua_State *state) {
 	try {
-		LUA->PushUserType(new RtMidiIn(), RtMidiIn::type);
+		LUA->PushUserType(new RtMidiIn(state), RtMidiIn::type);
 	} catch (const std::exception &ex) {
 		LUA->ThrowError(ex.what());
 	} return 1;
@@ -36,7 +36,7 @@ int rtmidi::CreateInput(lua_State *state) {
 
 int rtmidi::CreateOutput(lua_State *state) {
 	try {
-		LUA->PushUserType(new RtMidiOut(), RtMidiOut::type);
+		LUA->PushUserType(new RtMidiOut(state), RtMidiOut::type);
 	} catch (const std::exception &ex) {
 		LUA->ThrowError(ex.what());
 	} return 1;

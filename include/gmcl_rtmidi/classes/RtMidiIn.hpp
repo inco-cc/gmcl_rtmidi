@@ -22,7 +22,7 @@ namespace gmcl_rtmidi {
 
 class RtMidiIn : RtMidi {
 public:
-	RtMidiIn();
+	RtMidiIn(lua_State *state);
 	~RtMidiIn();
 
 	static int type;
