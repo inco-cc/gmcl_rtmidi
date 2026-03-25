@@ -16,12 +16,17 @@
 
 #pragma once
 
+#include "GarrysMod/Lua/Interface.h"
+
 namespace gmcl_rtmidi {
 
 class rtmidi {
 public:
 	static const char *version;
 	static const char *version_internal;
+
+	static int CreateInput(lua_State *state);
+	static int CreateOutput(lua_State *state);
 };
 
 } // namespace gmcl_rtmidi

@@ -14,32 +14,24 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define GMOD_ALLOW_DEPRECATED
+#pragma once
 
-#include <exception>
-#include "gmcl_rtmidi/modules/rtmidi.hpp"
-#include "gmcl_rtmidi/classes/RtMidiIn.hpp"
-#include "gmcl_rtmidi/classes/RtMidiOut.hpp"
+#include "gmcl_rtmidi/classes/RtMidi.hpp"
 
 namespace gmcl_rtmidi {
 
-const char *rtmidi::version = "0.1.0";
-const char *rtmidi::version_internal = RTMIDI_VERSION;
+class RtMidiIn : RtMidi {
+public:
+	RtMidiIn();
+	~RtMidiIn();
 
-int rtmidi::CreateInput(lua_State *state) {
-	try {
-		LUA->PushUserType(new RtMidiIn(), RtMidiIn::type);
-	} catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
-	} return 1;
-}
+	static int type;
 
-int rtmidi::CreateOutput(lua_State *state) {
-	try {
-		LUA->PushUserType(new RtMidiOut(), RtMidiOut::type);
-	} catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
-	} return 1;
-}
+	static int __index(lua_State *state) { return RtMidi::__index(state, type); }
+	static int __gc(lua_State *state) { return RtMidi::__gc(state, type); }
+	static int __tostring(lua_State *state) { return RtMidi::__tostring(state, type); }
+	static int GetAPIName(lua_State *state) { return RtMidi::GetAPIName(state, type); }
+	static int GetCurrentAPI(lua_State *state) { return RtMidi::GetCurrentAPI(state, type); }
+};
 
 } // namespace gmcl_rtmidi
