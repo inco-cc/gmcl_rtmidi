@@ -2,7 +2,8 @@
 
 !/include
 !/src
+!/tools
 !/.gitignore
+!/genie.lua
 !/LICENSE
 !/README.md
-!/xmake.lua
