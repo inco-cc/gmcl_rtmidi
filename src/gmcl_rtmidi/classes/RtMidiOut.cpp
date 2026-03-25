@@ -23,8 +23,8 @@ namespace gmcl_rtmidi {
 int RtMidiOut::type = -1;
 
 RtMidiOut::RtMidiOut(lua_State *state) {
-	::RtMidi::Api api = ::RtMidi::Api::UNSPECIFIED;
-	const char *client_name = "Garry's Mod Output Client";
+	auto api = ::RtMidi::Api::UNSPECIFIED;
+	auto client_name = "Garry's Mod Output Client";
 
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
 		api = (::RtMidi::Api)LUA->CheckNumber(1);
