@@ -3,9 +3,8 @@
 !/include
 !/licenses
 !/src
-!/tools
 !/.editorconfig
 !/.gitignore
-!/genie.lua
 !/LICENSE
+!/premake5.lua
 !/README.md
