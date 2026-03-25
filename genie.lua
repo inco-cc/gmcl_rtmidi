@@ -2,8 +2,8 @@ solution "gmcl_rtmidi"
 	startproject "gmcl_rtmidi"
 	language "C++"
 	location "build"
-	flags { "Cpp20" }
 	includedirs { "include" }
+	flags { "Cpp20", "StaticRuntime" }
 	platforms { "x32", "x64" }
 	configurations { "Debug", "Release" }
 
@@ -25,10 +25,12 @@ solution "gmcl_rtmidi"
 
 project "gmcl_rtmidi"
 	kind "SharedLib"
-	flags { "StaticRuntime" }
 	files { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" }
 	vpaths { ["Sources/*"] = { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" } }
 	links { "rtmidi" }
+
+	configuration "linux or macosx"
+		targetextension ".dll"
 
 	configuration { "windows", "x32" }
 		targetsuffix "_win32"
@@ -38,10 +40,15 @@ project "gmcl_rtmidi"
 		targetsuffix "_linux"
 	configuration { "linux", "x64" }
 		targetsuffix "_linux64"
-	configuration "macosx"
+	configuration { "macosx", "x64" }
 		targetsuffix "_osx"
-	configuration "linux or macosx"
-		targetextension ".dll"
+
+	configuration "windows"	
+		links { "winmm" }
+	configuration "linux"
+		links { "asound", "pthread" }
+	configuration "macosx"
+		links { "CoreMIDI.framework", "CoreAudio.framework", "CoreFoundation.framework" }
 
 project "rtmidi"
 	kind "StaticLib"
@@ -53,10 +60,7 @@ project "rtmidi"
 
 	configuration "windows"
 		defines { "__WINDOWS_MM__" }
-		links { "winmm" }
 	configuration "linux"
 		defines { "__LINUX_ALSA__" }
-		links { "asound", "pthread" }
 	configuration "macosx"
 		defines { "__MACOSX_CORE__" }
-		links { "CoreMIDI.framework", "CoreAudio.framework", "CoreFoundation.framework" }
