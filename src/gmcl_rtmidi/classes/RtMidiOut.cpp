@@ -31,11 +31,8 @@ RtMidiOut::RtMidiOut(lua_State *state) {
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
 		client_name = LUA->CheckString(2);
 
-	rtmidi = new ::RtMidiOut(api, client_name);
-}
-
-RtMidiOut::~RtMidiOut() {
-	delete dynamic_cast<::RtMidiOut *>(rtmidi);
+	rtmidi_out = std::make_unique<::RtMidiOut>(api, client_name);
+	rtmidi = rtmidi_out.get();
 }
 
 } // namespace gmcl_rtmidi

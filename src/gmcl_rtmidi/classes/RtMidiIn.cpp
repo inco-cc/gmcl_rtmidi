@@ -34,11 +34,8 @@ RtMidiIn::RtMidiIn(lua_State *state) {
 	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
 		queue_size = (unsigned int)LUA->CheckNumber(3);
 
-	rtmidi = new ::RtMidiIn(api, client_name, queue_size);
-}
-
-RtMidiIn::~RtMidiIn() {
-	delete dynamic_cast<::RtMidiIn *>(rtmidi);
+	rtmidi_in = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
+	rtmidi = rtmidi_in.get();
 }
 
 } // namespace gmcl_rtmidi

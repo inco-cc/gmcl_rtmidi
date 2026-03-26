@@ -16,14 +16,17 @@
 
 #pragma once
 
+#include <memory>
 #include "gmcl_rtmidi/classes/RtMidi.hpp"
 
 namespace gmcl_rtmidi {
 
 class RtMidiIn : RtMidi {
+private:
+	std::unique_ptr<::RtMidiIn> rtmidi_in;
+
 public:
 	RtMidiIn(lua_State *state);
-	~RtMidiIn();
 
 	static int type;
 
