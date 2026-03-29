@@ -30,6 +30,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "__tostring");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCurrentAPI);
 	LUA->SetField(-2, "GetCurrentAPI");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCompiledAPI);
+	LUA->SetField(-2, "GetCompiledAPI");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIName);
 	LUA->SetField(-2, "GetAPIName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIDisplayName);
@@ -50,6 +52,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "__tostring");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCurrentAPI);
 	LUA->SetField(-2, "GetCurrentAPI");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCompiledAPI);
+	LUA->SetField(-2, "GetCompiledAPI");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIName);
 	LUA->SetField(-2, "GetAPIName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIDisplayName);

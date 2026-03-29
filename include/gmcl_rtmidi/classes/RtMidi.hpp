@@ -18,6 +18,7 @@
 
 #include <memory>
 #include <format>
+#include <vector>
 #include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
 
@@ -62,6 +63,20 @@ public:
 	static int GetCurrentAPI(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		LUA->PushNumber(self->rtmidi->getCurrentApi());
+		return 1;
+	}
+
+	static int GetCompiledAPI(lua_State *state) {
+		const auto self = LUA->GetUserType<T>(1, T::type);
+		auto apis = std::vector<::RtMidi::Api>();
+		self->rtmidi->getCompiledApi(apis);
+
+		LUA->CreateTable();
+		for (const auto api : apis) {
+			LUA->PushNumber(LUA->ObjLen() + 1);
+			LUA->PushNumber(api);
+			LUA->SetTable(-3);
+		}
 		return 1;
 	}
 

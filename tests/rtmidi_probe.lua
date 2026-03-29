@@ -8,6 +8,7 @@ for i = 1, 2 do
 	result.current_api.number = _rtmidi:GetCurrentAPI()
 	result.current_api.name = _rtmidi:GetAPIName(result.current_api.number)
 	result.current_api.display_name = _rtmidi:GetAPIDisplayName(result.current_api.number)
+	result.compiled_api = _rtmidi:GetCompiledAPI()
 
 	result.port_count = _rtmidi:GetPortCount()
 	result.ports = {}
