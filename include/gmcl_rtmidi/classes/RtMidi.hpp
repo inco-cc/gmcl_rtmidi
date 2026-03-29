@@ -72,6 +72,13 @@ public:
 		return 1;
 	}
 
+	static int GetAPIDisplayName(lua_State *state) {
+		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
+		LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
+		return 1;
+	}
+
 	static int IsPortOpen(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		LUA->PushBool(self->rtmidi->isPortOpen());

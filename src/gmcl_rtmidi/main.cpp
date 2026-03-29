@@ -32,6 +32,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "GetCurrentAPI");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIName);
 	LUA->SetField(-2, "GetAPIName");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIDisplayName);
+	LUA->SetField(-2, "GetAPIDisplayName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsPortOpen);
 	LUA->SetField(-2, "IsPortOpen");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortCount);
@@ -50,6 +52,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "GetCurrentAPI");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIName);
 	LUA->SetField(-2, "GetAPIName");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIDisplayName);
+	LUA->SetField(-2, "GetAPIDisplayName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsPortOpen);
 	LUA->SetField(-2, "IsPortOpen");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortCount);

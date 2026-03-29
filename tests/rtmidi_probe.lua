@@ -1,17 +1,22 @@
 require("rtmidi")
 
-local rtmidi_in = rtmidi.CreateInput()
-print(string.format("Created: %s", rtmidi_in))
-local port_count = rtmidi_in:GetPortCount()
-print(string.format("Number of ports for %s: %i", rtmidi_in, port_count))
-for port = 0, port_count - 1 do
-	print(string.format("Name of port %i for %s: %s", port, rtmidi_in, rtmidi_in:GetPortName(port)))
-end
+for i = 1, 2 do
+	local _rtmidi = i == 1 and rtmidi.CreateInput() or rtmidi.CreateOutput()
+	local result = {}
 
-local rtmidi_out = rtmidi.CreateOutput()
-print(string.format("Created: %s", rtmidi_out))
-port_count = rtmidi_out:GetPortCount()
-print(string.format("Number of ports for %s: %i", rtmidi_out, port_count))
-for port = 0, port_count - 1 do
-	print(string.format("Name of port %i for %s: %s", port, rtmidi_out, rtmidi_out:GetPortName(port)))
+	result.current_api = {}
+	result.current_api.number = _rtmidi:GetCurrentAPI()
+	result.current_api.name = _rtmidi:GetAPIName(result.current_api.number)
+	result.current_api.display_name = _rtmidi:GetAPIDisplayName(result.current_api.number)
+
+	result.port_count = _rtmidi:GetPortCount()
+	result.ports = {}
+	for i = 1, result.port_count do
+		result.ports[i] = {}
+		result.ports[i].number = i - 1
+		result.ports[i].name = _rtmidi:GetPortName(i - 1)
+	end
+
+	print(string.format("\n%s", _rtmidi))
+	PrintTable(result)
 end
