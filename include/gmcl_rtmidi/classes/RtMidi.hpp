@@ -19,6 +19,7 @@
 #include <memory>
 #include <format>
 #include <vector>
+#include <exception>
 #include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
 
@@ -62,17 +63,25 @@ public:
 
 	static int GetCurrentAPI(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
-		LUA->PushNumber(self->rtmidi->getCurrentApi());
+		try {
+			LUA->PushNumber(self->rtmidi->getCurrentApi());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
 	}
 
 	static int GetCompiledAPI(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
-		auto apis = std::vector<::RtMidi::Api>();
-		self->rtmidi->getCompiledApi(apis);
+		std::vector<::RtMidi::Api> compiled_api;
+		try {
+			self->rtmidi->getCompiledApi(compiled_api);
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 
 		LUA->CreateTable();
-		for (const auto api : apis) {
+		for (const auto api : compiled_api) {
 			LUA->PushNumber(LUA->ObjLen() + 1);
 			LUA->PushNumber(api);
 			LUA->SetTable(-3);
@@ -83,34 +92,75 @@ public:
 	static int GetAPIName(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
-		LUA->PushString(self->rtmidi->getApiName(api).c_str());
+		try {
+			LUA->PushString(self->rtmidi->getApiName(api).c_str());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
 	}
 
 	static int GetAPIDisplayName(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
-		LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
+		try {
+			LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
 	}
 
 	static int IsPortOpen(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
-		LUA->PushBool(self->rtmidi->isPortOpen());
+		try {
+			LUA->PushBool(self->rtmidi->isPortOpen());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
 	}
 
 	static int GetPortCount(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
-		LUA->PushNumber(self->rtmidi->getPortCount());
+		try {
+			LUA->PushNumber(self->rtmidi->getPortCount());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
 	}
 
 	static int GetPortName(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		const auto port = (unsigned int)LUA->CheckNumber(2);
-		LUA->PushString(self->rtmidi->getPortName(port).c_str());
+		try {
+			LUA->PushString(self->rtmidi->getPortName(port).c_str());
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
 		return 1;
+	}
+
+	static int ClosePort(lua_State *state) {
+		const auto self = LUA->GetUserType<T>(1, T::type);
+		try {
+			self->rtmidi->closePort();
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
+		return 0;
+	}
+
+	static int OpenPort(lua_State *state) {
+		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto port = (unsigned int)LUA->CheckNumber(2);
+		try {
+			self->rtmidi->openPort(port);
+		} catch (const std::exception &ex) {
+			LUA->ThrowError(ex.what());
+		}
+		return 0;
 	}
 };
 

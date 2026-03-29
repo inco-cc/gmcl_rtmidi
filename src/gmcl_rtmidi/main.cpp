@@ -42,6 +42,10 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "GetPortCount");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortName);
 	LUA->SetField(-2, "GetPortName");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::ClosePort);
+	LUA->SetField(-2, "ClosePort");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::OpenPort);
+	LUA->SetField(-2, "OpenPort");
 
 	gmcl_rtmidi::RtMidiOut::type = LUA->CreateMetaTable("RtMidiOut");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__index);
@@ -64,6 +68,10 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "GetPortCount");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortName);
 	LUA->SetField(-2, "GetPortName");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::ClosePort);
+	LUA->SetField(-2, "ClosePort");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::OpenPort);
+	LUA->SetField(-2, "OpenPort");
 
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
 	LUA->CreateTable();
