@@ -49,6 +49,7 @@ project "rtmidi"
 	kind "StaticLib"
 	files { "include/RtMidi.h", "src/RtMidi.cpp" }
 	vpaths { ["Sources/*"] = { "include/*.h", "src/*.cpp" } }
+	defines { "RTMIDI_DO_NOT_ENSURE_UNIQUE_PORTNAMES" }
 
 	filter "configurations:Debug"
 		defines { "__RTMIDI_DEBUG__" }
