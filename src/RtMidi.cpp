@@ -3982,6 +3982,7 @@ void MidiOutWinUWP::sendMessage(const unsigned char* message, size_t size)
 #if defined(__UNIX_JACK__)
 
 // JACK header files
+#include <jack/weakjack.h>
 #include <jack/jack.h>
 #include <jack/midiport.h>
 #include <jack/ringbuffer.h>

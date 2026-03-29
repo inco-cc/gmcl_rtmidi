@@ -28,6 +28,12 @@ workspace "gmcl_rtmidi"
 		assemblydebug "Off"
 		defines { "NDEBUG" }
 
+newoption {
+	trigger        = "with-jack",
+	description    = "Build with JACK support",
+	category       = "RtMidi",
+}
+
 project "gmcl_rtmidi"
 	kind "SharedLib"
 	files { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" }
@@ -63,3 +69,5 @@ project "rtmidi"
 	filter "system:macosx"
 		defines { "__MACOSX_CORE__" }
 		links { "CoreMIDI.framework", "CoreAudio.framework", "CoreFoundation.framework" }
+	filter "options:with-jack"
+		defines { "__UNIX_JACK__" }
