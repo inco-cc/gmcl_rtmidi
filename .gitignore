@@ -3,6 +3,7 @@
 !/include
 !/licenses
 !/src
+!/tests
 !/.editorconfig
 !/.gitignore
 !/LICENSE
