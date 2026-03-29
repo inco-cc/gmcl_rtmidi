@@ -50,7 +50,7 @@ int rtmidi::CreateInput(lua_State *state) {
 int rtmidi::CreateOutput(lua_State *state) {
 	try {
 		auto api = ::RtMidi::Api::UNSPECIFIED;
-		auto client_name = "Garry's Mod Input Client";
+		auto client_name = "Garry's Mod Output Client";
 
 		if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
 			api = (::RtMidi::Api)LUA->CheckNumber(1);
