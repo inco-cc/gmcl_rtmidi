@@ -20,19 +20,10 @@
 
 namespace gmcl_rtmidi {
 
-int RtMidiOut::type = -1;
+int RtMidiOut::type = GarrysMod::Lua::Type::None;
 
-RtMidiOut::RtMidiOut(lua_State *state) {
-	auto api = ::RtMidi::Api::UNSPECIFIED;
-	auto client_name = "Garry's Mod Output Client";
-
-	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (::RtMidi::Api)LUA->CheckNumber(1);
-	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
-		client_name = LUA->CheckString(2);
-
-	rtmidi_out = std::make_unique<::RtMidiOut>(api, client_name);
-	rtmidi = rtmidi_out.get();
+RtMidiOut::RtMidiOut(const ::RtMidi::Api &api, const char *client_name) {
+	rtmidi = std::make_unique<::RtMidiOut>(api, client_name);
 }
 
 } // namespace gmcl_rtmidi

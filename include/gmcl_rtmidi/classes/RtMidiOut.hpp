@@ -16,28 +16,15 @@
 
 #pragma once
 
-#include <memory>
 #include "gmcl_rtmidi/classes/RtMidi.hpp"
 
 namespace gmcl_rtmidi {
 
-class RtMidiOut : RtMidi {
-private:
-	std::unique_ptr<::RtMidiOut> rtmidi_out;
-
+class RtMidiOut : public RtMidi<RtMidiOut, ::RtMidiOut> {
 public:
-	RtMidiOut(lua_State *state);
+	RtMidiOut(const ::RtMidi::Api &api, const char *client_name);
 
 	static int type;
-
-	static int __index(lua_State *state) { return RtMidi::__index(state, type); }
-	static int __gc(lua_State *state) { return RtMidi::__gc(state, type); }
-	static int __tostring(lua_State *state) { return RtMidi::__tostring(state, type); }
-	static int GetCurrentAPI(lua_State *state) { return RtMidi::GetCurrentAPI(state, type); }
-	static int GetAPIName(lua_State *state) { return RtMidi::GetAPIName(state, type); }
-	static int IsPortOpen(lua_State *state) { return RtMidi::IsPortOpen(state, type); }
-	static int GetPortCount(lua_State *state) { return RtMidi::GetPortCount(state, type); }
-	static int GetPortName(lua_State *state) { return RtMidi::GetPortName(state, type); }
 };
 
 } // namespace gmcl_rtmidi

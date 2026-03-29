@@ -20,22 +20,10 @@
 
 namespace gmcl_rtmidi {
 
-int RtMidiIn::type = -1;
+int RtMidiIn::type = GarrysMod::Lua::Type::None;
 
-RtMidiIn::RtMidiIn(lua_State *state) {
-	auto api = ::RtMidi::Api::UNSPECIFIED;
-	auto client_name = "Garry's Mod Input Client";
-	auto queue_size = 100U;
-
-	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (::RtMidi::Api)LUA->CheckNumber(1);
-	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
-		client_name = LUA->CheckString(2);
-	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
-		queue_size = (unsigned int)LUA->CheckNumber(3);
-
-	rtmidi_in = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
-	rtmidi = rtmidi_in.get();
+RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size) {
+	rtmidi = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
 }
 
 } // namespace gmcl_rtmidi
