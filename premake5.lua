@@ -57,6 +57,9 @@ project "rtmidi"
 	vpaths { ["Sources/*"] = { "include/*.h", "src/*.cpp" } }
 	defines { "RTMIDI_DO_NOT_ENSURE_UNIQUE_PORTNAMES" }
 
+	filter "system:linux or system:macosx"
+		pic "On"
+
 	filter "configurations:Debug"
 		defines { "__RTMIDI_DEBUG__" }
 
