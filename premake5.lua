@@ -36,6 +36,9 @@ newoption {
 
 project "gmcl_rtmidi"
 	kind "SharedLib"
+	targetprefix "gmcl_"
+	targetname "rtmidi"
+	targetextension ".dll"
 	files { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" }
 	vpaths { ["Sources/*"] = { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" } }
 	links { "rtmidi" }
