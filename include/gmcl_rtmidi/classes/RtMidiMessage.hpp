@@ -16,17 +16,28 @@
 
 #pragma once
 
-#include "gmcl_rtmidi/classes/RtMidi.hpp"
+#include <vector>
+#include "GarrysMod/Lua/Interface.h"
 
 namespace gmcl_rtmidi {
 
-class RtMidiIn : public RtMidi<RtMidiIn, ::RtMidiIn> {
+class RtMidiMessage {
+private:
+	double timestamp;
+	std::vector<unsigned char> message;
+
 public:
 	static int type;
 
-	RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size);
+	RtMidiMessage(const double &timestamp, const std::vector<unsigned char> &message);
 
-	static int GetMessage(lua_State *state);
+	static int __index(lua_State *state);
+	static int __gc(lua_State *state);
+	static int __tostring(lua_State *state);
+
+	static int GetTimestamp(lua_State *state);
+	static int GetStatusByte(lua_State *state);
+	static int GetDataBytes(lua_State *state);
 };
 
 } // namespace gmcl_rtmidi

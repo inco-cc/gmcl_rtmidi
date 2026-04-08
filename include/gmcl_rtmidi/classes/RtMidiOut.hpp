@@ -22,9 +22,9 @@ namespace gmcl_rtmidi {
 
 class RtMidiOut : public RtMidi<RtMidiOut, ::RtMidiOut> {
 public:
-	RtMidiOut(const ::RtMidi::Api &api, const char *client_name);
-
 	static int type;
+
+	RtMidiOut(const ::RtMidi::Api &api, const char *client_name);
 };
 
 } // namespace gmcl_rtmidi

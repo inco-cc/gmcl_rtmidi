@@ -16,6 +16,8 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
+#include <exception>
+#include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 
 namespace gmcl_rtmidi {
@@ -24,6 +26,20 @@ int RtMidiIn::type = GarrysMod::Lua::Type::None;
 
 RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size) {
 	rtmidi = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
+}
+
+int RtMidiIn::GetMessage(lua_State *state) {
+	const auto self = LUA->GetUserType<RtMidiIn>(1, type);
+	double timestamp;
+	std::vector<unsigned char> message;
+	try {
+		timestamp = self->rtmidi->getMessage(&message);
+	} catch (const std::exception &ex) {
+		LUA->ThrowError(ex.what());
+	}
+
+	LUA->PushUserType(new RtMidiMessage(timestamp, message), RtMidiMessage::type);
+	return 1;
 }
 
 } // namespace gmcl_rtmidi

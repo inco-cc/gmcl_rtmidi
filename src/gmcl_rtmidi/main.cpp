@@ -17,11 +17,26 @@
 #define GMOD_ALLOW_DEPRECATED
 
 #include "gmcl_rtmidi/common.hpp"
-#include "gmcl_rtmidi/modules/rtmidi.hpp"
+#include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
+#include "gmcl_rtmidi/libraries/rtmidi.hpp"
 
 GMOD_MODULE_OPEN() {
+	gmcl_rtmidi::RtMidiMessage::type = LUA->CreateMetaTable("RtMidiMessage");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::__index);
+	LUA->SetField(-2, "__index");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::__gc);
+	LUA->SetField(-2, "__gc");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::__tostring);
+	LUA->SetField(-2, "__tostring");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::GetTimestamp);
+	LUA->SetField(-2, "GetTimestamp");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::GetStatusByte);
+	LUA->SetField(-2, "GetStatusByte");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::GetDataBytes);
+	LUA->SetField(-2, "GetDataBytes");
+
 	gmcl_rtmidi::RtMidiIn::type = LUA->CreateMetaTable("RtMidiIn");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__index);
 	LUA->SetField(-2, "__index");
@@ -47,6 +62,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "ClosePort");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::OpenPort);
 	LUA->SetField(-2, "OpenPort");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetMessage);
+	LUA->SetField(-2, "GetMessage");
 
 	gmcl_rtmidi::RtMidiOut::type = LUA->CreateMetaTable("RtMidiOut");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__index);
@@ -91,6 +108,8 @@ GMOD_MODULE_OPEN() {
 
 GMOD_MODULE_CLOSE() {
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_REG);
+	LUA->PushNil();
+	LUA->SetField(-2, "RtMidiMessage");
 	LUA->PushNil();
 	LUA->SetField(-2, "RtMidiIn");
 	LUA->PushNil();
