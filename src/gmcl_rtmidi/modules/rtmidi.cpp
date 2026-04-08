@@ -23,9 +23,6 @@
 
 namespace gmcl_rtmidi {
 
-const char *rtmidi::version = "0.1.0";
-const char *rtmidi::version_internal = RTMIDI_VERSION;
-
 int rtmidi::CreateInput(lua_State *state) {
 	try {
 		auto api = ::RtMidi::Api::UNSPECIFIED;

@@ -16,6 +16,7 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
+#include "gmcl_rtmidi/common.hpp"
 #include "gmcl_rtmidi/modules/rtmidi.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
@@ -75,9 +76,9 @@ GMOD_MODULE_OPEN() {
 
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
 	LUA->CreateTable();
-	LUA->PushString(gmcl_rtmidi::rtmidi::version);
+	LUA->PushString(GMCL_RTMIDI_VERSION);
 	LUA->SetField(-2, "version");
-	LUA->PushString(gmcl_rtmidi::rtmidi::version_internal);
+	LUA->PushString(RTMIDI_VERSION);
 	LUA->SetField(-2, "version_internal");
 	LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateInput);
 	LUA->SetField(-2, "CreateInput");
