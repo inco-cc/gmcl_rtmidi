@@ -1,7 +1,6 @@
 workspace "gmcl_rtmidi"
 	startproject "gmcl_rtmidi"
 	language "C++"
-	cppdialect "C++20"
 	staticruntime "On"
 	location("build/" .. os.target() .. "/" .. (_ACTION or ""))
 	includedirs { "include" }
@@ -19,11 +18,13 @@ workspace "gmcl_rtmidi"
 
 	filter "configurations:Debug"
 		runtime "Debug"
+		optimize "Off"
 		symbols "On"
 		assemblydebug "On"
 		defines { "DEBUG" }
 	filter "configurations:Release"
 		runtime "Release"
+		optimize "On"
 		symbols "Off"
 		assemblydebug "Off"
 		defines { "NDEBUG" }
@@ -36,6 +37,7 @@ newoption {
 
 project "gmcl_rtmidi"
 	kind "SharedLib"
+	cppdialect "C++20"
 	targetprefix "gmcl_"
 	targetname "rtmidi"
 	targetextension ".dll"
@@ -56,6 +58,7 @@ project "gmcl_rtmidi"
 
 project "rtmidi"
 	kind "StaticLib"
+	cppdialect "C++14"
 	files { "include/RtMidi.h", "src/RtMidi.cpp" }
 	vpaths { ["Sources/*"] = { "include/*.h", "src/*.cpp" } }
 	defines { "RTMIDI_DO_NOT_ENSURE_UNIQUE_PORTNAMES" }
