@@ -26,4 +26,20 @@ RtMidiOut::RtMidiOut(const ::RtMidi::Api &api, const char *client_name) {
 	rtmidi = std::make_unique<::RtMidiOut>(api, client_name);
 }
 
+int RtMidiOut::SendMessage(lua_State *state) {
+	std::vector<unsigned char> message;
+	for (int i = 2; i <= LUA->Top(); i++)
+		message.push_back((unsigned char)LUA->CheckNumber(i));
+
+	const auto self = LUA->GetUserType<RtMidiOut>(1, type);
+	try {
+		self->rtmidi->sendMessage(&message);
+	}
+	catch (const std::exception &ex) {
+		LUA->ThrowError(ex.what());
+	}
+
+	return 0;
+}
+
 } // namespace gmcl_rtmidi

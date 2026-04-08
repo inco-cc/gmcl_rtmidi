@@ -16,7 +16,6 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
-#include <exception>
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"

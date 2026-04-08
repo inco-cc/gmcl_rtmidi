@@ -25,6 +25,8 @@ public:
 	static int type;
 
 	RtMidiOut(const ::RtMidi::Api &api, const char *client_name);
+
+	static int SendMessage(lua_State *state);
 };
 
 } // namespace gmcl_rtmidi

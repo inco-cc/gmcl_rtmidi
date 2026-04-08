@@ -16,7 +16,6 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
-#include <exception>
 #include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 
@@ -30,11 +29,11 @@ RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsi
 
 int RtMidiIn::GetMessage(lua_State *state) {
 	const auto self = LUA->GetUserType<RtMidiIn>(1, type);
-	double timestamp;
-	std::vector<unsigned char> message;
+	double timestamp; std::vector<unsigned char> message;
 	try {
 		timestamp = self->rtmidi->getMessage(&message);
-	} catch (const std::exception &ex) {
+	}
+	catch (const std::exception &ex) {
 		LUA->ThrowError(ex.what());
 	}
 

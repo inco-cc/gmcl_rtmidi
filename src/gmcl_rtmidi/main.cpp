@@ -90,6 +90,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "ClosePort");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::OpenPort);
 	LUA->SetField(-2, "OpenPort");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::SendMessage);
+	LUA->SetField(-2, "SendMessage");
 
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
 	LUA->CreateTable();
