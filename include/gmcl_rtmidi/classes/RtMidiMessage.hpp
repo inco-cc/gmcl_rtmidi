@@ -17,6 +17,7 @@
 #pragma once
 
 #include <vector>
+
 #include "GarrysMod/Lua/Interface.h"
 
 namespace gmcl_rtmidi {

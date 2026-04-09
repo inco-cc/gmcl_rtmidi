@@ -16,6 +16,11 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
+#include <exception>
+
+#include "GarrysMod/Lua/Interface.h"
+#include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"
@@ -23,18 +28,17 @@
 namespace gmcl_rtmidi {
 
 int rtmidi::CreateInput(lua_State *state) {
+	auto api = ::RtMidi::Api::UNSPECIFIED;
+	auto client_name = "Garry's Mod Input Client";
+	auto queue_size = 100U;
+	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
+		api = (::RtMidi::Api)LUA->CheckNumber(1);
+	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
+		client_name = LUA->CheckString(2);
+	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
+		queue_size = (unsigned int)LUA->CheckNumber(3);
+
 	try {
-		auto api = ::RtMidi::Api::UNSPECIFIED;
-		auto client_name = "Garry's Mod Input Client";
-		auto queue_size = 100U;
-
-		if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-			api = (::RtMidi::Api)LUA->CheckNumber(1);
-		if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
-			client_name = LUA->CheckString(2);
-		if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
-			queue_size = (unsigned int)LUA->CheckNumber(3);
-
 		LUA->PushUserType(new RtMidiIn(api, client_name, queue_size), RtMidiIn::type);
 	}
 	catch (const std::exception &error) {
@@ -44,15 +48,14 @@ int rtmidi::CreateInput(lua_State *state) {
 }
 
 int rtmidi::CreateOutput(lua_State *state) {
+	auto api = ::RtMidi::Api::UNSPECIFIED;
+	auto client_name = "Garry's Mod Output Client";
+	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
+		api = (::RtMidi::Api)LUA->CheckNumber(1);
+	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
+		client_name = LUA->CheckString(2);
+
 	try {
-		auto api = ::RtMidi::Api::UNSPECIFIED;
-		auto client_name = "Garry's Mod Output Client";
-
-		if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-			api = (::RtMidi::Api)LUA->CheckNumber(1);
-		if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
-			client_name = LUA->CheckString(2);
-
 		LUA->PushUserType(new RtMidiOut(api, client_name), RtMidiOut::type);
 	}
 	catch (const std::exception &error) {

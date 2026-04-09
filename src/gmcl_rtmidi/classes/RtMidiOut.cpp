@@ -16,6 +16,13 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
+#include <exception>
+#include <memory>
+#include <vector>
+
+#include "GarrysMod/Lua/Interface.h"
+#include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 
 namespace gmcl_rtmidi {

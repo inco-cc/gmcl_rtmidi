@@ -16,12 +16,13 @@
 
 #pragma once
 
-#include <memory>
-#include <format>
-#include <vector>
 #include <exception>
-#include "RtMidi.h"
+#include <format>
+#include <memory>
+#include <vector>
+
 #include "GarrysMod/Lua/Interface.h"
+#include "RtMidi.h"
 
 namespace gmcl_rtmidi {
 

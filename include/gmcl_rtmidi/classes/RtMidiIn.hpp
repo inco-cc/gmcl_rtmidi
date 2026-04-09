@@ -16,6 +16,9 @@
 
 #pragma once
 
+#include "GarrysMod/Lua/Interface.h"
+#include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidi.hpp"
 
 namespace gmcl_rtmidi {
