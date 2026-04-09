@@ -20,7 +20,6 @@
 #include <format>
 #include <memory>
 #include <vector>
-
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
 
@@ -66,8 +65,7 @@ public:
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
 			LUA->PushNumber(self->rtmidi->getCurrentApi());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -78,8 +76,7 @@ public:
 		std::vector<::RtMidi::Api> compiled_api;
 		try {
 			self->rtmidi->getCompiledApi(compiled_api);
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 
@@ -97,8 +94,7 @@ public:
 		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
 		try {
 			LUA->PushString(self->rtmidi->getApiName(api).c_str());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -109,8 +105,7 @@ public:
 		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
 		try {
 			LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -120,8 +115,7 @@ public:
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
 			LUA->PushBool(self->rtmidi->isPortOpen());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -131,8 +125,7 @@ public:
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
 			LUA->PushNumber(self->rtmidi->getPortCount());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -143,8 +136,7 @@ public:
 		const auto port = (unsigned int)LUA->CheckNumber(2);
 		try {
 			LUA->PushString(self->rtmidi->getPortName(port).c_str());
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 1;
@@ -154,8 +146,7 @@ public:
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
 			self->rtmidi->closePort();
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 0;
@@ -166,8 +157,7 @@ public:
 		const auto port = (unsigned int)LUA->CheckNumber(2);
 		try {
 			self->rtmidi->openPort(port);
-		}
-		catch (const std::exception &error) {
+		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
 		return 0;

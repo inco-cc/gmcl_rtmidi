@@ -19,12 +19,10 @@
 #include <exception>
 #include <memory>
 #include <vector>
-
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
-
-#include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
+#include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 
 namespace gmcl_rtmidi {
 
@@ -39,8 +37,7 @@ int RtMidiIn::GetMessage(lua_State *state) {
 	double timestamp; std::vector<unsigned char> message;
 	try {
 		timestamp = self->rtmidi->getMessage(&message);
-	}
-	catch (const std::exception &error) {
+	} catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 

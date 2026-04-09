@@ -17,7 +17,6 @@
 #pragma once
 
 #include <vector>
-
 #include "GarrysMod/Lua/Interface.h"
 
 namespace gmcl_rtmidi {
@@ -36,6 +35,7 @@ public:
 	static int __gc(lua_State *state);
 	static int __tostring(lua_State *state);
 
+	static int IsValid(lua_State *state);
 	static int GetTimestamp(lua_State *state);
 	static int GetStatusByte(lua_State *state);
 	static int GetDataBytes(lua_State *state);

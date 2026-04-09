@@ -18,11 +18,10 @@
 
 #include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
-
+#include "gmcl_rtmidi/common.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
-#include "gmcl_rtmidi/common.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"
 
 GMOD_MODULE_OPEN() {
@@ -33,6 +32,8 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "__gc");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::__tostring);
 	LUA->SetField(-2, "__tostring");
+	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::IsValid);
+	LUA->SetField(-2, "IsValid");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::GetTimestamp);
 	LUA->SetField(-2, "GetTimestamp");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiMessage::GetStatusByte);

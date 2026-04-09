@@ -19,10 +19,8 @@
 #include <exception>
 #include <memory>
 #include <vector>
-
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
-
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 
 namespace gmcl_rtmidi {
@@ -41,8 +39,7 @@ int RtMidiOut::SendMessage(lua_State *state) {
 	const auto self = LUA->GetUserType<RtMidiOut>(1, type);
 	try {
 		self->rtmidi->sendMessage(&message);
-	}
-	catch (const std::exception &error) {
+	} catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 

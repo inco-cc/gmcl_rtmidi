@@ -18,9 +18,7 @@
 
 #include <format>
 #include <vector>
-
 #include "GarrysMod/Lua/Interface.h"
-
 #include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 
 namespace gmcl_rtmidi {
@@ -54,6 +52,18 @@ int RtMidiMessage::__tostring(lua_State *state) {
 	const auto status_byte = LUA->GetNumber();
 
 	LUA->PushString(std::format("{} [{}]", type_name, status_byte).c_str());
+	return 1;
+}
+
+int RtMidiMessage::IsValid(lua_State *state) {
+	const auto self = LUA->GetUserType<RtMidiMessage>(1, type);
+	if (self != nullptr) {
+		LUA->GetField(1, "GetStatusByte");
+		LUA->Push(1);
+		LUA->Call(1, 1);
+		LUA->PushBool(LUA->GetNumber() != -1);
+	} else
+		LUA->PushBool(false);
 	return 1;
 }
 

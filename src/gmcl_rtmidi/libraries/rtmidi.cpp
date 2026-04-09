@@ -17,10 +17,8 @@
 #define GMOD_ALLOW_DEPRECATED
 
 #include <exception>
-
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
-
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"
@@ -40,8 +38,7 @@ int rtmidi::CreateInput(lua_State *state) {
 
 	try {
 		LUA->PushUserType(new RtMidiIn(api, client_name, queue_size), RtMidiIn::type);
-	}
-	catch (const std::exception &error) {
+	} catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 	return 1;
@@ -57,8 +54,7 @@ int rtmidi::CreateOutput(lua_State *state) {
 
 	try {
 		LUA->PushUserType(new RtMidiOut(api, client_name), RtMidiOut::type);
-	}
-	catch (const std::exception &error) {
+	} catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 	return 1;
