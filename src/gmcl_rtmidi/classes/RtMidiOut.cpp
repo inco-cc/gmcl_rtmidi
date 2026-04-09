@@ -35,8 +35,8 @@ int RtMidiOut::SendMessage(lua_State *state) {
 	try {
 		self->rtmidi->sendMessage(&message);
 	}
-	catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
+	catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
 	}
 
 	return 0;

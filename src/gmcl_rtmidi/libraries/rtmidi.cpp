@@ -37,8 +37,8 @@ int rtmidi::CreateInput(lua_State *state) {
 
 		LUA->PushUserType(new RtMidiIn(api, client_name, queue_size), RtMidiIn::type);
 	}
-	catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
+	catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
 	}
 	return 1;
 }
@@ -55,8 +55,8 @@ int rtmidi::CreateOutput(lua_State *state) {
 
 		LUA->PushUserType(new RtMidiOut(api, client_name), RtMidiOut::type);
 	}
-	catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
+	catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
 	}
 	return 1;
 }

@@ -66,8 +66,8 @@ public:
 		try {
 			LUA->PushNumber(self->rtmidi->getCurrentApi());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -78,8 +78,8 @@ public:
 		try {
 			self->rtmidi->getCompiledApi(compiled_api);
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 
 		LUA->CreateTable();
@@ -97,8 +97,8 @@ public:
 		try {
 			LUA->PushString(self->rtmidi->getApiName(api).c_str());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -109,8 +109,8 @@ public:
 		try {
 			LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -120,8 +120,8 @@ public:
 		try {
 			LUA->PushBool(self->rtmidi->isPortOpen());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -131,8 +131,8 @@ public:
 		try {
 			LUA->PushNumber(self->rtmidi->getPortCount());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -143,8 +143,8 @@ public:
 		try {
 			LUA->PushString(self->rtmidi->getPortName(port).c_str());
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 1;
 	}
@@ -154,8 +154,8 @@ public:
 		try {
 			self->rtmidi->closePort();
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 0;
 	}
@@ -166,8 +166,8 @@ public:
 		try {
 			self->rtmidi->openPort(port);
 		}
-		catch (const std::exception &ex) {
-			LUA->ThrowError(ex.what());
+		catch (const std::exception &error) {
+			LUA->ThrowError(error.what());
 		}
 		return 0;
 	}

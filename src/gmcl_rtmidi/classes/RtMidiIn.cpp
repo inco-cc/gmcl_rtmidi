@@ -33,8 +33,8 @@ int RtMidiIn::GetMessage(lua_State *state) {
 	try {
 		timestamp = self->rtmidi->getMessage(&message);
 	}
-	catch (const std::exception &ex) {
-		LUA->ThrowError(ex.what());
+	catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
 	}
 
 	LUA->PushUserType(new RtMidiMessage(timestamp, message), RtMidiMessage::type);
