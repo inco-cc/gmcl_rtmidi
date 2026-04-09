@@ -25,6 +25,43 @@
 
 namespace gmcl_rtmidi {
 
+int rtmidi::GetCompiledAPI(lua_State *state) {
+	std::vector<::RtMidi::Api> compiled_api;
+	try {
+		::RtMidi::getCompiledApi(compiled_api);
+	} catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
+	}
+
+	LUA->CreateTable();
+	for (const auto api : compiled_api) {
+		LUA->PushNumber(LUA->ObjLen() + 1);
+		LUA->PushNumber(api);
+		LUA->SetTable(-3);
+	}
+	return 1;
+}
+
+int rtmidi::GetAPIName(lua_State *state) {
+	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+	try {
+		LUA->PushString(::RtMidi::getApiName(api).c_str());
+	} catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
+	}
+	return 1;
+}
+
+int rtmidi::GetAPIDisplayName(lua_State *state) {
+	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+	try {
+		LUA->PushString(::RtMidi::getApiDisplayName(api).c_str());
+	} catch (const std::exception &error) {
+		LUA->ThrowError(error.what());
+	}
+	return 1;
+}
+
 int rtmidi::CreateInput(lua_State *state) {
 	auto api = ::RtMidi::Api::UNSPECIFIED;
 	auto client_name = "Garry's Mod Input Client";

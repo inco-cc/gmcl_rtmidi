@@ -50,12 +50,6 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "__tostring");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCurrentAPI);
 	LUA->SetField(-2, "GetCurrentAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCompiledAPI);
-	LUA->SetField(-2, "GetCompiledAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIName);
-	LUA->SetField(-2, "GetAPIName");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetAPIDisplayName);
-	LUA->SetField(-2, "GetAPIDisplayName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsPortOpen);
 	LUA->SetField(-2, "IsPortOpen");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortCount);
@@ -78,12 +72,6 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "__tostring");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCurrentAPI);
 	LUA->SetField(-2, "GetCurrentAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCompiledAPI);
-	LUA->SetField(-2, "GetCompiledAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIName);
-	LUA->SetField(-2, "GetAPIName");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetAPIDisplayName);
-	LUA->SetField(-2, "GetAPIDisplayName");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsPortOpen);
 	LUA->SetField(-2, "IsPortOpen");
 	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortCount);
@@ -103,6 +91,12 @@ GMOD_MODULE_OPEN() {
 	LUA->SetField(-2, "version");
 	LUA->PushString(RTMIDI_VERSION);
 	LUA->SetField(-2, "version_internal");
+	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetCompiledAPI);
+	LUA->SetField(-2, "GetCompiledAPI");
+	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIName);
+	LUA->SetField(-2, "GetAPIName");
+	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIDisplayName);
+	LUA->SetField(-2, "GetAPIDisplayName");
 	LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateInput);
 	LUA->SetField(-2, "CreateInput");
 	LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateOutput);

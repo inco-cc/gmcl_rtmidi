@@ -49,12 +49,13 @@ public:
 		LUA->GetField(1, "GetCurrentAPI");
 		LUA->Push(1);
 		LUA->Call(1, 1);
-		auto api = LUA->GetNumber();
+		auto current_api = LUA->GetNumber();
 
-		LUA->GetField(1, "GetAPIName");
-		LUA->Push(1);
-		LUA->PushNumber(api);
-		LUA->Call(2, 1);
+		LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
+		LUA->GetField(-1, "rtmidi");
+		LUA->GetField(-1, "GetAPIName");
+		LUA->PushNumber(current_api);
+		LUA->Call(1, 1);
 		auto api_name = LUA->GetString();
 
 		LUA->PushString(std::format("{} [{}]", type_name, api_name).c_str());
@@ -65,46 +66,6 @@ public:
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
 			LUA->PushNumber(self->rtmidi->getCurrentApi());
-		} catch (const std::exception &error) {
-			LUA->ThrowError(error.what());
-		}
-		return 1;
-	}
-
-	static int GetCompiledAPI(lua_State *state) {
-		const auto self = LUA->GetUserType<T>(1, T::type);
-		std::vector<::RtMidi::Api> compiled_api;
-		try {
-			self->rtmidi->getCompiledApi(compiled_api);
-		} catch (const std::exception &error) {
-			LUA->ThrowError(error.what());
-		}
-
-		LUA->CreateTable();
-		for (const auto api : compiled_api) {
-			LUA->PushNumber(LUA->ObjLen() + 1);
-			LUA->PushNumber(api);
-			LUA->SetTable(-3);
-		}
-		return 1;
-	}
-
-	static int GetAPIName(lua_State *state) {
-		const auto self = LUA->GetUserType<T>(1, T::type);
-		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
-		try {
-			LUA->PushString(self->rtmidi->getApiName(api).c_str());
-		} catch (const std::exception &error) {
-			LUA->ThrowError(error.what());
-		}
-		return 1;
-	}
-
-	static int GetAPIDisplayName(lua_State *state) {
-		const auto self = LUA->GetUserType<T>(1, T::type);
-		const auto api = (::RtMidi::Api)LUA->GetNumber(2);
-		try {
-			LUA->PushString(self->rtmidi->getApiDisplayName(api).c_str());
 		} catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
