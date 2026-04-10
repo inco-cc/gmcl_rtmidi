@@ -62,6 +62,12 @@ public:
 		return 1;
 	}
 
+	static int IsValid(lua_State *state) {
+		const auto self = LUA->GetUserType<T>(1, T::type);
+		LUA->PushBool(self != nullptr && self->rtmidi);
+		return 1;
+	}
+
 	static int GetCurrentAPI(lua_State *state) {
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		try {
