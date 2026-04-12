@@ -6,6 +6,7 @@
 !/tests
 !/.editorconfig
 !/.gitignore
+!/CONTRIBUTING.md
 !/LICENSE
 !/premake5.lua
 !/README.md
