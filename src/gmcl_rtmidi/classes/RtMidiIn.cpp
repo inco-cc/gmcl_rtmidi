@@ -21,7 +21,6 @@
 #include <vector>
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
-#include "gmcl_rtmidi/classes/RtMidiMessage.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 
 namespace gmcl_rtmidi {
@@ -41,7 +40,18 @@ int RtMidiIn::GetMessage(lua_State *state) {
 		LUA->ThrowError(error.what());
 	}
 
-	LUA->PushUserType(new RtMidiMessage(timestamp, message), RtMidiMessage::type);
+	LUA->CreateTable();
+	LUA->PushString("timestamp");
+	LUA->PushNumber(timestamp);
+	LUA->SetTable(-3);
+	LUA->PushString("message");
+	LUA->CreateTable();
+	for (const auto &byte : message) {
+		LUA->PushNumber(LUA->ObjLen() + 1);
+		LUA->PushNumber(byte);
+		LUA->SetTable(-3);
+	}
+	LUA->SetTable(-3);
 	return 1;
 }
 
