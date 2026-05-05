@@ -6,6 +6,10 @@ This is a binary module for [Garry's Mod](https://gmod.facepunch.com/) that expo
 
 Compiled binaries are available from the [releases page on GitHub](https://github.com/inco-cc/gmcl_rtmidi/releases).
 
+## Documentation
+
+Documentation is maintained in the [docs directory](docs), and is [hosted on GitHub Pages](https://inco-cc.github.io/gmcl_rtmidi/).
+
 ## Contributing
 
 Contributions are welcome, but please read [CONTRIBUTING.md](CONTRIBUTING.md) before [submitting a pull request](https://github.com/inco-cc/gmcl_rtmidi/pulls).
