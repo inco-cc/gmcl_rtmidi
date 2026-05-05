@@ -1,3 +1,27 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://inco-cc.github.io/gmcl_rtmidi/'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'gmcl_rtmidi'
+theme = 'hugo-geekdoc'
+
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+disablePathToLower = true
+enableGitInfo = true
+enableRobotsTXT = false
+
+[markup.goldmark.renderer]
+  unsafe = true
+[markup.tableOfContents]
+  startLevel = 1
+  endLevel = 9
+
+[taxonomies]
+  tag = "tags"
+
+[params]
+  geekdocSubtitle = "Realtime MIDI for Garry's Mod"
+  geekdocCollapseAllSections = true
+
+[[more]]
+  name = "View Source"
+  ref = "https://github.com/inco-cc/gmcl_rtmidi"
