@@ -1,8 +1,14 @@
+newoption {
+	trigger        = "with-jack",
+	description    = "Build with JACK support",
+	category       = "RtMidi",
+}
+
 workspace "gmcl_rtmidi"
 	startproject "gmcl_rtmidi"
 	language "C++"
 	staticruntime "On"
-	location("build/" .. os.target() .. "/" .. (_ACTION or ""))
+	location("build/"..os.target().."/"..(_ACTION or ""))
 	includedirs { "include" }
 	configurations { "Debug", "Release" }
 
@@ -28,12 +34,6 @@ workspace "gmcl_rtmidi"
 		symbols "Off"
 		assemblydebug "Off"
 		defines { "NDEBUG" }
-
-newoption {
-	trigger        = "with-jack",
-	description    = "Build with JACK support",
-	category       = "RtMidi",
-}
 
 project "gmcl_rtmidi"
 	kind "SharedLib"
