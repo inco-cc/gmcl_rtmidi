@@ -1,0 +1,5 @@
+header:
+  - name: GitHub
+    ref: https://github.com/inco-cc/gmcl_rtmidi
+    icon: gdoc_github
+    external: true
