@@ -1,8 +1,12 @@
-name: Deploy documentation to Pages
-
+name: Build documentation
 on:
   push:
     branches: ["main"]
+    paths:
+      - docs/**
+  pull_request:
+    paths:
+      - docs/**
 
   workflow_dispatch:
 
