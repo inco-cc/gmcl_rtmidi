@@ -4,7 +4,10 @@ title: API
 
 ## Description
 
-Enumerations used to specify backend MIDI APIs.
+Enumerations used to specify all possible MIDI APIs.
+
+Note that only certain APIs will be supported depending on the operating system the module was built for.  
+Use [rtmidi.GetCompiledAPI]({{% ref "api/libs/rtmidi/GetCompiledAPI" %}}) to return a list of compiled APIs at runtime.
 
 ## Values
 
