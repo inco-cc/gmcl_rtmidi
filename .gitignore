@@ -10,6 +10,7 @@
 !/thirdparty
 !/.editorconfig
 !/.gitignore
+!/CMakeLists.txt
 !/CONTRIBUTING.md
 !/LICENSE
 !/premake5.lua
