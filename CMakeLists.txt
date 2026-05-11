@@ -8,8 +8,9 @@ project(gmcl_rtmidi
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-set(RTMIDI_BUILD_TESTING "OFF")
-set(RTMIDI_BUILD_STATIC_LIBS "ON")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(RTMIDI_BUILD_TESTING OFF)
+set(RTMIDI_BUILD_STATIC_LIBS ON)
 
 add_subdirectory(thirdparty/gmod-module-base/include)
 add_subdirectory(thirdparty/rtmidi)
