@@ -39,6 +39,7 @@ source_group(TREE ${CMAKE_SOURCE_DIR}/include/gmcl_rtmidi PREFIX "Header Files" 
 target_include_directories(gmcl_rtmidi PRIVATE include)
 target_link_libraries(gmcl_rtmidi PRIVATE gmod-module-base rtmidi)
 
+set_target_properties(gmcl_rtmidi PROPERTIES PREFIX "")
 if(APPLE)
   set_target_properties(gmcl_rtmidi PROPERTIES SUFFIX "_osx.dll")
 elseif(UNIX)
