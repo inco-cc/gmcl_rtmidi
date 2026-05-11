@@ -6,6 +6,7 @@
 !/licenses
 !/src
 !/tests
+!/thirdparty
 !/.editorconfig
 !/.gitignore
 !/CONTRIBUTING.md
