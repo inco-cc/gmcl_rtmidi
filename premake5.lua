@@ -38,8 +38,6 @@ workspace "gmcl_rtmidi"
 project "gmcl_rtmidi"
 	kind "SharedLib"
 	cppdialect "C++20"
-	targetprefix "gmcl_"
-	targetname "rtmidi"
 	targetextension ".dll"
 	files { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" }
 	vpaths { ["Sources/*"] = { "include/gmcl_rtmidi/**.hpp", "src/gmcl_rtmidi/**.cpp" } }
