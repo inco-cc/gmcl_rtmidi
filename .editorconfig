@@ -1,5 +1,21 @@
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
 # gmcl_rtmidi source code
 [{src,include}/gmcl_rtmidi/**.{c,h}pp]
 indent_size = 4
 indent_style = tab
-insert_final_newline = true
+
+# RtMidi source code
+[{src,include}/RtMidi.*{cpp,h}]
+indent_size = 2
+indent_style = space
+
+# Lua scripts
+[*.lua]
+indent_size = 4
+indent_style = tab
