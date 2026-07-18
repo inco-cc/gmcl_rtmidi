@@ -12,7 +12,7 @@ Documentation is maintained in the [docs directory](docs), and is [hosted on Git
 
 ## Contributing
 
-Contributions are welcome, but please read [CONTRIBUTING.md](CONTRIBUTING.md) before [submitting a pull request](https://github.com/inco-cc/gmcl_rtmidi/pulls).
+Contributions are welcome, but please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 
 ## License
 
