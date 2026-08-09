@@ -36,7 +36,7 @@ RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsi
 
 int RtMidiIn::GetMessage(lua_State *state)
 {
-	const auto self = LUA->GetUserType<RtMidiIn>(1, type);
+	const auto self = get_self(state);
 
 	auto timestamp = 0.0;
 	auto message = std::vector<unsigned char>();

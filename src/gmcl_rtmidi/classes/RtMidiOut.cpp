@@ -36,12 +36,12 @@ RtMidiOut::RtMidiOut(const ::RtMidi::Api &api, const char *client_name)
 
 int RtMidiOut::SendMessage(lua_State *state)
 {
+	const auto self = get_self(state);
+
 	auto message = std::vector<unsigned char>();
 
 	for (int i = 2; i <= LUA->Top(); i++)
 		message.push_back((unsigned char)LUA->CheckNumber(i));
-
-	const auto self = LUA->GetUserType<RtMidiOut>(1, type);
 
 	try {
 		self->rtmidi->sendMessage(&message);

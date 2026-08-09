@@ -31,6 +31,23 @@ template <class T, class U> class RtMidi
 protected:
 	std::unique_ptr<U> rtmidi;
 
+	static T *get_self(lua_State *state)
+	{
+		if (not LUA->IsType(1, T::type)) {
+			const auto actual_type = LUA->GetType(1);
+
+			LUA->PushMetaTable(T::type);
+			LUA->GetField(-1, "MetaName");
+
+			auto type_name = LUA->GetString();
+			auto actual_type_name = LUA->GetTypeName(actual_type);
+
+			LUA->ArgError(1, std::format("{} expected, got {}", type_name, actual_type_name).c_str());
+		}
+
+		return LUA->GetUserType<T>(1, T::type);
+	}
+
 public:
 	static int __index(lua_State *state)
 	{
@@ -42,7 +59,7 @@ public:
 
 	static int __gc(lua_State *state)
 	{
-		auto self = LUA->GetUserType<T>(1, T::type);
+		auto self = get_self(state);
 
 		if (self != nullptr) delete self;
 
@@ -76,16 +93,16 @@ public:
 
 	static int IsValid(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 
-		LUA->PushBool(self != nullptr && self->rtmidi);
+		LUA->PushBool(self != nullptr and self->rtmidi.get() != nullptr);
 
 		return 1;
 	}
 
 	static int GetCurrentAPI(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 
 		try {
 			LUA->PushNumber(self->rtmidi->getCurrentApi());
@@ -99,7 +116,7 @@ public:
 
 	static int IsPortOpen(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 
 		try {
 			LUA->PushBool(self->rtmidi->isPortOpen());
@@ -113,7 +130,7 @@ public:
 
 	static int GetPortCount(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 
 		try {
 			LUA->PushNumber(self->rtmidi->getPortCount());
@@ -127,7 +144,7 @@ public:
 
 	static int GetPortName(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 		const auto port = (unsigned int)LUA->CheckNumber(2);
 
 		try {
@@ -142,7 +159,7 @@ public:
 
 	static int ClosePort(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 
 		try {
 			self->rtmidi->closePort();
@@ -156,7 +173,7 @@ public:
 
 	static int OpenPort(lua_State *state)
 	{
-		const auto self = LUA->GetUserType<T>(1, T::type);
+		const auto self = get_self(state);
 		const auto port = (unsigned int)LUA->CheckNumber(2);
 
 		try {
