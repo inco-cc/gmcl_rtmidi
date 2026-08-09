@@ -18,11 +18,13 @@
 
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidi.hpp"
 
 namespace gmcl_rtmidi {
 
-class RtMidiIn : public RtMidi<RtMidiIn, ::RtMidiIn> {
+class RtMidiIn : public RtMidi<RtMidiIn, ::RtMidiIn>
+{
 public:
 	static int type;
 

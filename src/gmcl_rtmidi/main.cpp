@@ -16,115 +16,120 @@
 
 #define GMOD_ALLOW_DEPRECATED
 
-#include "RtMidi.h"
 #include "GarrysMod/Lua/Interface.h"
+#include "RtMidi.h"
+
 #include "gmcl_rtmidi/common.hpp"
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"
 
-GMOD_MODULE_OPEN() {
+GMOD_MODULE_OPEN()
+{
 	gmcl_rtmidi::RtMidiIn::type = LUA->CreateMetaTable("RtMidiIn");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__index);
-	LUA->SetField(-2, "__index");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__gc);
-	LUA->SetField(-2, "__gc");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__tostring);
-	LUA->SetField(-2, "__tostring");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsValid);
-	LUA->SetField(-2, "IsValid");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCurrentAPI);
-	LUA->SetField(-2, "GetCurrentAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsPortOpen);
-	LUA->SetField(-2, "IsPortOpen");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortCount);
-	LUA->SetField(-2, "GetPortCount");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortName);
-	LUA->SetField(-2, "GetPortName");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::ClosePort);
-	LUA->SetField(-2, "ClosePort");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::OpenPort);
-	LUA->SetField(-2, "OpenPort");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetMessage);
-	LUA->SetField(-2, "GetMessage");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__index);
+		LUA->SetField(-2, "__index");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__gc);
+		LUA->SetField(-2, "__gc");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::__tostring);
+		LUA->SetField(-2, "__tostring");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsValid);
+		LUA->SetField(-2, "IsValid");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetCurrentAPI);
+		LUA->SetField(-2, "GetCurrentAPI");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::IsPortOpen);
+		LUA->SetField(-2, "IsPortOpen");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortCount);
+		LUA->SetField(-2, "GetPortCount");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetPortName);
+		LUA->SetField(-2, "GetPortName");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::ClosePort);
+		LUA->SetField(-2, "ClosePort");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::OpenPort);
+		LUA->SetField(-2, "OpenPort");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiIn::GetMessage);
+		LUA->SetField(-2, "GetMessage");
 
 	gmcl_rtmidi::RtMidiOut::type = LUA->CreateMetaTable("RtMidiOut");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__index);
-	LUA->SetField(-2, "__index");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__gc);
-	LUA->SetField(-2, "__gc");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__tostring);
-	LUA->SetField(-2, "__tostring");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsValid);
-	LUA->SetField(-2, "IsValid");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCurrentAPI);
-	LUA->SetField(-2, "GetCurrentAPI");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsPortOpen);
-	LUA->SetField(-2, "IsPortOpen");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortCount);
-	LUA->SetField(-2, "GetPortCount");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortName);
-	LUA->SetField(-2, "GetPortName");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::ClosePort);
-	LUA->SetField(-2, "ClosePort");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::OpenPort);
-	LUA->SetField(-2, "OpenPort");
-	LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::SendMessage);
-	LUA->SetField(-2, "SendMessage");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__index);
+		LUA->SetField(-2, "__index");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__gc);
+		LUA->SetField(-2, "__gc");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::__tostring);
+		LUA->SetField(-2, "__tostring");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsValid);
+		LUA->SetField(-2, "IsValid");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetCurrentAPI);
+		LUA->SetField(-2, "GetCurrentAPI");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::IsPortOpen);
+		LUA->SetField(-2, "IsPortOpen");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortCount);
+		LUA->SetField(-2, "GetPortCount");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::GetPortName);
+		LUA->SetField(-2, "GetPortName");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::ClosePort);
+		LUA->SetField(-2, "ClosePort");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::OpenPort);
+		LUA->SetField(-2, "OpenPort");
+		LUA->PushCFunction(gmcl_rtmidi::RtMidiOut::SendMessage);
+		LUA->SetField(-2, "SendMessage");
 
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-	LUA->CreateTable();
-	LUA->PushString(GMCL_RTMIDI_VERSION);
-	LUA->SetField(-2, "version");
-	LUA->PushString(RTMIDI_VERSION);
-	LUA->SetField(-2, "version_internal");
-	LUA->CreateTable();
-	LUA->PushNumber(RtMidi::Api::UNSPECIFIED);
-	LUA->SetField(-2, "UNSPECIFIED");
-	LUA->PushNumber(RtMidi::Api::MACOSX_CORE);
-	LUA->SetField(-2, "MACOSX_CORE");
-	LUA->PushNumber(RtMidi::Api::LINUX_ALSA);
-	LUA->SetField(-2, "LINUX_ALSA");
-	LUA->PushNumber(RtMidi::Api::UNIX_JACK);
-	LUA->SetField(-2, "UNIX_JACK");
-	LUA->PushNumber(RtMidi::Api::WINDOWS_MM);
-	LUA->SetField(-2, "WINDOWS_MM");
-	LUA->PushNumber(RtMidi::Api::RTMIDI_DUMMY);
-	LUA->SetField(-2, "RTMIDI_DUMMY");
-	LUA->PushNumber(RtMidi::Api::WEB_MIDI_API);
-	LUA->SetField(-2, "WEB_MIDI_API");
-	LUA->PushNumber(RtMidi::Api::WINDOWS_UWP);
-	LUA->SetField(-2, "WINDOWS_UWP");
-	LUA->PushNumber(RtMidi::Api::ANDROID_AMIDI);
-	LUA->SetField(-2, "ANDROID_AMIDI");
-	LUA->PushNumber(RtMidi::Api::NUM_APIS);
-	LUA->SetField(-2, "NUM_APIS");
-	LUA->SetField(-2, "API");
-	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetCompiledAPI);
-	LUA->SetField(-2, "GetCompiledAPI");
-	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIName);
-	LUA->SetField(-2, "GetAPIName");
-	LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIDisplayName);
-	LUA->SetField(-2, "GetAPIDisplayName");
-	LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateInput);
-	LUA->SetField(-2, "CreateInput");
-	LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateOutput);
-	LUA->SetField(-2, "CreateOutput");
-	LUA->SetField(-2, "rtmidi");
+		LUA->CreateTable();
+			LUA->PushString(GMCL_RTMIDI_VERSION);
+			LUA->SetField(-2, "version");
+			LUA->PushString(RTMIDI_VERSION);
+			LUA->SetField(-2, "version_internal");
+
+			LUA->CreateTable();
+				LUA->PushNumber(RtMidi::Api::UNSPECIFIED);
+				LUA->SetField(-2, "UNSPECIFIED");
+				LUA->PushNumber(RtMidi::Api::MACOSX_CORE);
+				LUA->SetField(-2, "MACOSX_CORE");
+				LUA->PushNumber(RtMidi::Api::LINUX_ALSA);
+				LUA->SetField(-2, "LINUX_ALSA");
+				LUA->PushNumber(RtMidi::Api::UNIX_JACK);
+				LUA->SetField(-2, "UNIX_JACK");
+				LUA->PushNumber(RtMidi::Api::WINDOWS_MM);
+				LUA->SetField(-2, "WINDOWS_MM");
+				LUA->PushNumber(RtMidi::Api::RTMIDI_DUMMY);
+				LUA->SetField(-2, "RTMIDI_DUMMY");
+				LUA->PushNumber(RtMidi::Api::WEB_MIDI_API);
+				LUA->SetField(-2, "WEB_MIDI_API");
+				LUA->PushNumber(RtMidi::Api::WINDOWS_UWP);
+				LUA->SetField(-2, "WINDOWS_UWP");
+				LUA->PushNumber(RtMidi::Api::ANDROID_AMIDI);
+				LUA->SetField(-2, "ANDROID_AMIDI");
+				LUA->PushNumber(RtMidi::Api::NUM_APIS);
+				LUA->SetField(-2, "NUM_APIS");
+			LUA->SetField(-2, "API");
+
+			LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetCompiledAPI);
+			LUA->SetField(-2, "GetCompiledAPI");
+			LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIName);
+			LUA->SetField(-2, "GetAPIName");
+			LUA->PushCFunction(gmcl_rtmidi::rtmidi::GetAPIDisplayName);
+			LUA->SetField(-2, "GetAPIDisplayName");
+			LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateInput);
+			LUA->SetField(-2, "CreateInput");
+			LUA->PushCFunction(gmcl_rtmidi::rtmidi::CreateOutput);
+			LUA->SetField(-2, "CreateOutput");
+		LUA->SetField(-2, "rtmidi");
 
 	return 0;
 }
 
-GMOD_MODULE_CLOSE() {
+GMOD_MODULE_CLOSE()
+{
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_REG);
-	LUA->PushNil();
-	LUA->SetField(-2, "RtMidiIn");
-	LUA->PushNil();
-	LUA->SetField(-2, "RtMidiOut");
+		LUA->PushNil();
+		LUA->SetField(-2, "RtMidiIn");
+		LUA->PushNil();
+		LUA->SetField(-2, "RtMidiOut");
 
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-	LUA->PushNil();
-	LUA->SetField(-2, "rtmidi");
+		LUA->PushNil();
+		LUA->SetField(-2, "rtmidi");
 
 	return 0;
 }

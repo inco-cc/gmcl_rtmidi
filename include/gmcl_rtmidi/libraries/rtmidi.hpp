@@ -20,13 +20,13 @@
 
 namespace gmcl_rtmidi {
 
-class rtmidi {
-public:
-	static int GetCompiledAPI(lua_State *state);
-	static int GetAPIName(lua_State *state);
-	static int GetAPIDisplayName(lua_State *state);
-	static int CreateInput(lua_State *state);
-	static int CreateOutput(lua_State *state);
-};
+namespace rtmidi
+{
+	int GetCompiledAPI(lua_State *state);
+	int GetAPIName(lua_State *state);
+	int GetAPIDisplayName(lua_State *state);
+	int CreateInput(lua_State *state);
+	int CreateOutput(lua_State *state);
+}
 
 } // namespace gmcl_rtmidi

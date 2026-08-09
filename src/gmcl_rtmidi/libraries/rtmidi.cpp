@@ -17,55 +17,73 @@
 #define GMOD_ALLOW_DEPRECATED
 
 #include <exception>
+#include <vector>
+
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 #include "gmcl_rtmidi/classes/RtMidiOut.hpp"
 #include "gmcl_rtmidi/libraries/rtmidi.hpp"
 
 namespace gmcl_rtmidi {
 
-int rtmidi::GetCompiledAPI(lua_State *state) {
-	std::vector<::RtMidi::Api> compiled_api;
+int rtmidi::GetCompiledAPI(lua_State *state)
+{
+	auto compiled_api = std::vector<::RtMidi::Api>();
+
 	try {
 		::RtMidi::getCompiledApi(compiled_api);
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 
 	LUA->CreateTable();
-	for (const auto api : compiled_api) {
+
+	for (const auto &api : compiled_api) {
 		LUA->PushNumber(LUA->ObjLen() + 1);
 		LUA->PushNumber(api);
 		LUA->SetTable(-3);
 	}
+
 	return 1;
 }
 
-int rtmidi::GetAPIName(lua_State *state) {
+int rtmidi::GetAPIName(lua_State *state)
+{
 	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+
 	try {
 		LUA->PushString(::RtMidi::getApiName(api).c_str());
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
+
 	return 1;
 }
 
-int rtmidi::GetAPIDisplayName(lua_State *state) {
+int rtmidi::GetAPIDisplayName(lua_State *state)
+{
 	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+
 	try {
 		LUA->PushString(::RtMidi::getApiDisplayName(api).c_str());
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
+
 	return 1;
 }
 
-int rtmidi::CreateInput(lua_State *state) {
+int rtmidi::CreateInput(lua_State *state)
+{
 	auto api = ::RtMidi::Api::UNSPECIFIED;
 	auto client_name = "Garry's Mod Input Client";
 	auto queue_size = 100U;
+
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
 		api = (::RtMidi::Api)LUA->CheckNumber(1);
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
@@ -75,15 +93,19 @@ int rtmidi::CreateInput(lua_State *state) {
 
 	try {
 		LUA->PushUserType(new RtMidiIn(api, client_name, queue_size), RtMidiIn::type);
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
+
 	return 1;
 }
 
-int rtmidi::CreateOutput(lua_State *state) {
+int rtmidi::CreateOutput(lua_State *state)
+{
 	auto api = ::RtMidi::Api::UNSPECIFIED;
 	auto client_name = "Garry's Mod Output Client";
+
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
 		api = (::RtMidi::Api)LUA->CheckNumber(1);
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
@@ -91,9 +113,11 @@ int rtmidi::CreateOutput(lua_State *state) {
 
 	try {
 		LUA->PushUserType(new RtMidiOut(api, client_name), RtMidiOut::type);
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
+
 	return 1;
 }
 

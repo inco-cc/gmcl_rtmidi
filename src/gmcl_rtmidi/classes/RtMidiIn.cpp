@@ -19,39 +19,51 @@
 #include <exception>
 #include <memory>
 #include <vector>
+
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
+
 #include "gmcl_rtmidi/classes/RtMidiIn.hpp"
 
 namespace gmcl_rtmidi {
 
 int RtMidiIn::type = GarrysMod::Lua::Type::None;
 
-RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size) {
+RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size)
+{
 	rtmidi = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
 }
 
-int RtMidiIn::GetMessage(lua_State *state) {
+int RtMidiIn::GetMessage(lua_State *state)
+{
 	const auto self = LUA->GetUserType<RtMidiIn>(1, type);
-	double timestamp; std::vector<unsigned char> message;
+
+	auto timestamp = 0.0;
+	auto message = std::vector<unsigned char>();
+
 	try {
 		timestamp = self->rtmidi->getMessage(&message);
-	} catch (const std::exception &error) {
+	}
+	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
 	}
 
 	LUA->CreateTable();
-	LUA->PushString("timestamp");
-	LUA->PushNumber(timestamp);
-	LUA->SetTable(-3);
-	LUA->PushString("message");
-	LUA->CreateTable();
-	for (const auto &byte : message) {
-		LUA->PushNumber(LUA->ObjLen() + 1);
-		LUA->PushNumber(byte);
+		LUA->PushString("timestamp");
+		LUA->PushNumber(timestamp);
 		LUA->SetTable(-3);
-	}
-	LUA->SetTable(-3);
+
+		LUA->PushString("message");
+		LUA->CreateTable();
+
+		for (const auto &byte : message) {
+			LUA->PushNumber(LUA->ObjLen() + 1);
+			LUA->PushNumber(byte);
+			LUA->SetTable(-3);
+		}
+
+		LUA->SetTable(-3);
+
 	return 1;
 }
 

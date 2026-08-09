@@ -20,113 +20,152 @@
 #include <format>
 #include <memory>
 #include <vector>
+
 #include "GarrysMod/Lua/Interface.h"
 #include "RtMidi.h"
 
 namespace gmcl_rtmidi {
 
-template <class T, class U> class RtMidi {
+template <class T, class U> class RtMidi
+{
 protected:
 	std::unique_ptr<U> rtmidi;
 
 public:
-	static int __index(lua_State *state) {
+	static int __index(lua_State *state)
+	{
 		LUA->PushMetaTable(T::type);
 		LUA->GetField(-1, LUA->GetString(2));
+
 		return 1;
 	}
 
-	static int __gc(lua_State *state) {
+	static int __gc(lua_State *state)
+	{
 		auto self = LUA->GetUserType<T>(1, T::type);
+
 		if (self != nullptr) delete self;
+
 		return 0;
 	}
 
-	static int __tostring(lua_State *state) {
+	static int __tostring(lua_State *state)
+	{
 		LUA->GetField(1, "MetaName");
+
 		auto type_name = LUA->GetString();
 
 		LUA->GetField(1, "GetCurrentAPI");
-		LUA->Push(1);
+			LUA->Push(1);
 		LUA->Call(1, 1);
+
 		auto current_api = LUA->GetNumber();
 
 		LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-		LUA->GetField(-1, "rtmidi");
-		LUA->GetField(-1, "GetAPIName");
-		LUA->PushNumber(current_api);
-		LUA->Call(1, 1);
+			LUA->GetField(-1, "rtmidi");
+				LUA->GetField(-1, "GetAPIName");
+				LUA->PushNumber(current_api);
+			LUA->Call(1, 1);
+
 		auto api_name = LUA->GetString();
 
 		LUA->PushString(std::format("{} [{}]", type_name, api_name).c_str());
+
 		return 1;
 	}
 
-	static int IsValid(lua_State *state) {
+	static int IsValid(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
+
 		LUA->PushBool(self != nullptr && self->rtmidi);
+
 		return 1;
 	}
 
-	static int GetCurrentAPI(lua_State *state) {
+	static int GetCurrentAPI(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
+
 		try {
 			LUA->PushNumber(self->rtmidi->getCurrentApi());
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 1;
 	}
 
-	static int IsPortOpen(lua_State *state) {
+	static int IsPortOpen(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
+
 		try {
 			LUA->PushBool(self->rtmidi->isPortOpen());
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 1;
 	}
 
-	static int GetPortCount(lua_State *state) {
+	static int GetPortCount(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
+
 		try {
 			LUA->PushNumber(self->rtmidi->getPortCount());
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 1;
 	}
 
-	static int GetPortName(lua_State *state) {
+	static int GetPortName(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		const auto port = (unsigned int)LUA->CheckNumber(2);
+
 		try {
 			LUA->PushString(self->rtmidi->getPortName(port).c_str());
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 1;
 	}
 
-	static int ClosePort(lua_State *state) {
+	static int ClosePort(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
+
 		try {
 			self->rtmidi->closePort();
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 0;
 	}
 
-	static int OpenPort(lua_State *state) {
+	static int OpenPort(lua_State *state)
+	{
 		const auto self = LUA->GetUserType<T>(1, T::type);
 		const auto port = (unsigned int)LUA->CheckNumber(2);
+
 		try {
 			self->rtmidi->openPort(port);
-		} catch (const std::exception &error) {
+		}
+		catch (const std::exception &error) {
 			LUA->ThrowError(error.what());
 		}
+
 		return 0;
 	}
 };
