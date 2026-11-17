@@ -146,7 +146,7 @@ public:
 	static int GetPortName(lua_State *state)
 	{
 		const auto self = get_self(state);
-		const auto port = (unsigned int)LUA->CheckNumber(2);
+		const auto port = static_cast<unsigned int>(LUA->CheckNumber(2));
 
 		try {
 			LUA->PushString(self->rtmidi->getPortName(port).c_str());
@@ -175,7 +175,7 @@ public:
 	static int OpenPort(lua_State *state)
 	{
 		const auto self = get_self(state);
-		const auto port = (unsigned int)LUA->CheckNumber(2);
+		const auto port = static_cast<unsigned int>(LUA->CheckNumber(2));
 
 		try {
 			self->rtmidi->openPort(port);

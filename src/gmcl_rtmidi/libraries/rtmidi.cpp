@@ -52,7 +52,7 @@ int rtmidi::GetCompiledAPI(lua_State *state)
 
 int rtmidi::GetAPIName(lua_State *state)
 {
-	const auto api = (rt::midi::RtMidi::Api)LUA->GetNumber(1);
+	const auto api = static_cast<rt::midi::RtMidi::Api>(LUA->CheckNumber(1));
 
 	try {
 		LUA->PushString(rt::midi::RtMidi::getApiName(api).c_str());
@@ -66,7 +66,7 @@ int rtmidi::GetAPIName(lua_State *state)
 
 int rtmidi::GetAPIDisplayName(lua_State *state)
 {
-	const auto api = (rt::midi::RtMidi::Api)LUA->GetNumber(1);
+	const auto api = static_cast<rt::midi::RtMidi::Api>(LUA->CheckNumber(1));
 
 	try {
 		LUA->PushString(rt::midi::RtMidi::getApiDisplayName(api).c_str());
@@ -85,11 +85,11 @@ int rtmidi::CreateInput(lua_State *state)
 	auto queue_size = 100U;
 
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (rt::midi::RtMidi::Api)LUA->CheckNumber(1);
+		api = static_cast<rt::midi::RtMidi::Api>(LUA->CheckNumber(1));
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
 		client_name = LUA->CheckString(2);
 	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
-		queue_size = (unsigned int)LUA->CheckNumber(3);
+		queue_size = static_cast<unsigned int>(LUA->CheckNumber(3));
 
 	try {
 		LUA->PushUserType(new RtMidiIn(api, client_name, queue_size), RtMidiIn::type);
@@ -107,7 +107,7 @@ int rtmidi::CreateOutput(lua_State *state)
 	auto client_name = "Garry's Mod Output Client";
 
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (rt::midi::RtMidi::Api)LUA->CheckNumber(1);
+		api = static_cast<rt::midi::RtMidi::Api>(LUA->CheckNumber(1));
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
 		client_name = LUA->CheckString(2);
 

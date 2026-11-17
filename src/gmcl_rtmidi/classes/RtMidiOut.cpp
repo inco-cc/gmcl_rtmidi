@@ -41,7 +41,7 @@ int RtMidiOut::SendMessage(lua_State *state)
 	auto message = std::vector<unsigned char>();
 
 	for (int i = 2; i <= LUA->Top(); i++)
-		message.push_back((unsigned char)LUA->CheckNumber(i));
+		message.push_back(static_cast<unsigned char>(LUA->CheckNumber(i)));
 
 	try {
 		self->rtmidi->sendMessage(&message);
