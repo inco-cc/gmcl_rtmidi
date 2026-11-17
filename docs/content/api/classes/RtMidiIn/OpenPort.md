@@ -10,8 +10,9 @@ RtMidiIn:OpenPort(number port)
 
 Opens a port to receive messages from.
 
-Only one port can be open at a time per RtMidiIn instance.  
-If you need to receive messages from multiple ports simultaneously, create another RtMidiIn instance with [rtmidi.CreateInput]({{% ref "api/libs/rtmidi/CreateInput" %}}).
+{{< note >}}
+Only one port can be open at a time per [RtMidiIn]({{% ref "api/classes/RtMidiIn" %}}) instance.
+{{< /note >}}
 
 ## Arguments
 

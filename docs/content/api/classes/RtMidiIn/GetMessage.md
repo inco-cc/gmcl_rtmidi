@@ -10,7 +10,9 @@ table RtMidiIn:GetMessage()
 
 Returns the last received message and pops it from the queue.
 
+{{< note >}}
 Messages are only received when a port is opened with [RtMidiIn:OpenPort]({{% ref "api/classes/RtMidiIn/OpenPort" %}}).
+{{< /note >}}
 
 ## Returns
 

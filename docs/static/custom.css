@@ -1,0 +1,8 @@
+.note {
+	display: flex;
+	flex-direction: row;
+}
+
+.note :first-child {
+	white-space: pre;
+}
