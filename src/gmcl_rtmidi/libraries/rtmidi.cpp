@@ -30,10 +30,10 @@ namespace gmcl_rtmidi {
 
 int rtmidi::GetCompiledAPI(lua_State *state)
 {
-	auto compiled_api = std::vector<::RtMidi::Api>();
+	auto compiled_api = std::vector<rt::midi::RtMidi::Api>();
 
 	try {
-		::RtMidi::getCompiledApi(compiled_api);
+		rt::midi::RtMidi::getCompiledApi(compiled_api);
 	}
 	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
@@ -52,10 +52,10 @@ int rtmidi::GetCompiledAPI(lua_State *state)
 
 int rtmidi::GetAPIName(lua_State *state)
 {
-	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+	const auto api = (rt::midi::RtMidi::Api)LUA->GetNumber(1);
 
 	try {
-		LUA->PushString(::RtMidi::getApiName(api).c_str());
+		LUA->PushString(rt::midi::RtMidi::getApiName(api).c_str());
 	}
 	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
@@ -66,10 +66,10 @@ int rtmidi::GetAPIName(lua_State *state)
 
 int rtmidi::GetAPIDisplayName(lua_State *state)
 {
-	const auto api = (::RtMidi::Api)LUA->GetNumber(1);
+	const auto api = (rt::midi::RtMidi::Api)LUA->GetNumber(1);
 
 	try {
-		LUA->PushString(::RtMidi::getApiDisplayName(api).c_str());
+		LUA->PushString(rt::midi::RtMidi::getApiDisplayName(api).c_str());
 	}
 	catch (const std::exception &error) {
 		LUA->ThrowError(error.what());
@@ -80,12 +80,12 @@ int rtmidi::GetAPIDisplayName(lua_State *state)
 
 int rtmidi::CreateInput(lua_State *state)
 {
-	auto api = ::RtMidi::Api::UNSPECIFIED;
+	auto api = rt::midi::RtMidi::Api::UNSPECIFIED;
 	auto client_name = "Garry's Mod Input Client";
 	auto queue_size = 100U;
 
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (::RtMidi::Api)LUA->CheckNumber(1);
+		api = (rt::midi::RtMidi::Api)LUA->CheckNumber(1);
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
 		client_name = LUA->CheckString(2);
 	if (LUA->GetType(3) > GarrysMod::Lua::Type::Nil)
@@ -103,11 +103,11 @@ int rtmidi::CreateInput(lua_State *state)
 
 int rtmidi::CreateOutput(lua_State *state)
 {
-	auto api = ::RtMidi::Api::UNSPECIFIED;
+	auto api = rt::midi::RtMidi::Api::UNSPECIFIED;
 	auto client_name = "Garry's Mod Output Client";
 
 	if (LUA->GetType(1) > GarrysMod::Lua::Type::Nil)
-		api = (::RtMidi::Api)LUA->CheckNumber(1);
+		api = (rt::midi::RtMidi::Api)LUA->CheckNumber(1);
 	if (LUA->GetType(2) > GarrysMod::Lua::Type::Nil)
 		client_name = LUA->CheckString(2);
 

@@ -29,9 +29,9 @@ namespace gmcl_rtmidi {
 
 int RtMidiIn::type = GarrysMod::Lua::Type::None;
 
-RtMidiIn::RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size)
+RtMidiIn::RtMidiIn(const rt::midi::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size)
 {
-	rtmidi = std::make_unique<::RtMidiIn>(api, client_name, queue_size);
+	rtmidi = std::make_unique<rt::midi::RtMidiIn>(api, client_name, queue_size);
 }
 
 int RtMidiIn::GetMessage(lua_State *state)

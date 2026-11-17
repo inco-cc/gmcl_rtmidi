@@ -82,25 +82,25 @@ GMOD_MODULE_OPEN()
 			LUA->SetField(-2, "version_internal");
 
 			LUA->CreateTable();
-				LUA->PushNumber(RtMidi::Api::UNSPECIFIED);
+				LUA->PushNumber(rt::midi::RtMidi::Api::UNSPECIFIED);
 				LUA->SetField(-2, "UNSPECIFIED");
-				LUA->PushNumber(RtMidi::Api::MACOSX_CORE);
+				LUA->PushNumber(rt::midi::RtMidi::Api::MACOSX_CORE);
 				LUA->SetField(-2, "MACOSX_CORE");
-				LUA->PushNumber(RtMidi::Api::LINUX_ALSA);
+				LUA->PushNumber(rt::midi::RtMidi::Api::LINUX_ALSA);
 				LUA->SetField(-2, "LINUX_ALSA");
-				LUA->PushNumber(RtMidi::Api::UNIX_JACK);
+				LUA->PushNumber(rt::midi::RtMidi::Api::UNIX_JACK);
 				LUA->SetField(-2, "UNIX_JACK");
-				LUA->PushNumber(RtMidi::Api::WINDOWS_MM);
+				LUA->PushNumber(rt::midi::RtMidi::Api::WINDOWS_MM);
 				LUA->SetField(-2, "WINDOWS_MM");
-				LUA->PushNumber(RtMidi::Api::RTMIDI_DUMMY);
+				LUA->PushNumber(rt::midi::RtMidi::Api::RTMIDI_DUMMY);
 				LUA->SetField(-2, "RTMIDI_DUMMY");
-				LUA->PushNumber(RtMidi::Api::WEB_MIDI_API);
+				LUA->PushNumber(rt::midi::RtMidi::Api::WEB_MIDI_API);
 				LUA->SetField(-2, "WEB_MIDI_API");
-				LUA->PushNumber(RtMidi::Api::WINDOWS_UWP);
+				LUA->PushNumber(rt::midi::RtMidi::Api::WINDOWS_UWP);
 				LUA->SetField(-2, "WINDOWS_UWP");
-				LUA->PushNumber(RtMidi::Api::ANDROID_AMIDI);
+				LUA->PushNumber(rt::midi::RtMidi::Api::ANDROID_AMIDI);
 				LUA->SetField(-2, "ANDROID_AMIDI");
-				LUA->PushNumber(RtMidi::Api::NUM_APIS);
+				LUA->PushNumber(rt::midi::RtMidi::Api::NUM_APIS);
 				LUA->SetField(-2, "NUM_APIS");
 			LUA->SetField(-2, "API");
 

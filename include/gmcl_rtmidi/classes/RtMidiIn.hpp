@@ -23,12 +23,12 @@
 
 namespace gmcl_rtmidi {
 
-class RtMidiIn : public RtMidi<RtMidiIn, ::RtMidiIn>
+class RtMidiIn : public RtMidi<RtMidiIn, rt::midi::RtMidiIn>
 {
 public:
 	static int type;
 
-	RtMidiIn(const ::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size);
+	RtMidiIn(const rt::midi::RtMidi::Api &api, const char *client_name, const unsigned int &queue_size);
 
 	static int GetMessage(lua_State *state);
 };
