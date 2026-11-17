@@ -65,16 +65,16 @@ project "rtmidi"
 		pic "On"
 
 	filter "configurations:Debug"
-		defines { "__RTMIDI_DEBUG__" }
+		defines { "RTMIDI_DEBUG" }
 
 	filter "system:windows"
-		defines { "__WINDOWS_MM__" }
+		defines { "RTMIDI_API_WINMM" }
 		links { "winmm" }
 	filter "system:linux"
-		defines { "__LINUX_ALSA__" }
+		defines { "RTMIDI_API_ALSA" }
 		links { "asound", "pthread" }
 	filter "system:macosx"
-		defines { "__MACOSX_CORE__" }
+		defines { "RTMIDI_API_CORE" }
 		links { "CoreMIDI.framework", "CoreAudio.framework", "CoreFoundation.framework" }
 	filter "options:with-jack"
-		defines { "__UNIX_JACK__" }
+		defines { "RTMIDI_API_JACK" }
