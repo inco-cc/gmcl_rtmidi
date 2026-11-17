@@ -1,9 +1,3 @@
-newoption {
-	trigger        = "with-jack",
-	description    = "Build with JACK support",
-	category       = "RtMidi",
-}
-
 workspace "gmcl_rtmidi"
 	startproject "gmcl_rtmidi"
 	language "C++"
@@ -76,5 +70,3 @@ project "rtmidi"
 	filter "system:macosx"
 		defines { "RTMIDI_API_CORE" }
 		links { "CoreMIDI.framework", "CoreAudio.framework", "CoreFoundation.framework" }
-	filter "options:with-jack"
-		defines { "RTMIDI_API_JACK" }
