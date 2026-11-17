@@ -33,7 +33,7 @@
             {{- end }}
           {{- end }}
           {{- if $showAnchor }}
-          <a data-clipboard-text="{{ .Page.Permalink }}#{{ $uniqueAnchor }}" class="gdoc-page__anchor clip flex align-center" title="{{ i18n "title_anchor_prefix" }} {{ .name | safeHTML }}" aria-label="{{ i18n "title_anchor_prefix" }} {{ .name | safeHTML }}" href="#{{ $uniqueAnchor }}">
+          <a data-clipboard-text="{{ .Page.Permalink }}#{{ $uniqueAnchor }}" class="gdoc-page__anchor clip flex align-center" title="{{ i18n "title_anchor_prefix" }} {{ .name | safeHTML }}" aria-label="{{ i18n "title_anchor_prefix" }} {{ .name | safeHTML }}" href="#{{ $uniqueAnchor | safeHTML }}">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
           </a>
           {{- end }}
@@ -49,7 +49,15 @@
             {{- end }}
           </div>
           <div class="gdoc-props__default">
-            {{- with default "none" (.defaultValue | string) }}
+            {{- $default := "" }}
+            {{- if and (eq .type "list") .defaultValue }}
+              {{- $default = delimit .defaultValue ", " }}
+            {{- else if and (eq .type "dict") .defaultValue }}
+              {{- $default = .defaultValue | jsonify }}
+            {{- else if .defaultValue }}
+              {{- $default = .defaultValue | string }}
+            {{- end }}
+            {{- with default "none" $default }}
               <span>{{ i18n "propertylist_default" | title }}:</span>
               <span>{{ . }}</span>
             {{- end }}
