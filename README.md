@@ -1,7 +1,7 @@
 # gmcl\_rtmidi
 
 [![C++20](https://img.shields.io/badge/C++-20-blue)](https://cppreference.com/cpp/20)
-[![RtMidi 6.0.0](https://img.shields.io/badge/RtMidi-6.0.0-red)](https://caml.music.mcgill.ca/~gary/rtmidi/)
+[![RtMidi 6.1.0](https://img.shields.io/badge/RtMidi-6.1.0-red)](https://caml.music.mcgill.ca/~gary/rtmidi/)
 
 This is a binary module for [Garry's Mod](https://gmod.facepunch.com/) that exposes realtime MIDI communication to the game's Lua environment through the [RtMidi library](https://caml.music.mcgill.ca/~gary/rtmidi/).
 
