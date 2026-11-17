@@ -61,7 +61,8 @@ public:
 	{
 		auto self = get_self(state);
 
-		if (self != nullptr) delete self;
+		if (self != nullptr)
+			delete self;
 
 		return 0;
 	}

@@ -50,7 +50,7 @@ project "gmcl_rtmidi"
 
 project "rtmidi"
 	kind "StaticLib"
-	cppdialect "C++14"
+	cppdialect "C++11"
 	files { "include/RtMidi.h", "src/RtMidi.cpp" }
 	vpaths { ["Sources/*"] = { "include/*.h", "src/*.cpp" } }
 	defines { "RTMIDI_DO_NOT_ENSURE_UNIQUE_PORTNAMES" }
