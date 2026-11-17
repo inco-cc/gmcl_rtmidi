@@ -100,6 +100,8 @@ GMOD_MODULE_OPEN()
 				LUA->SetField(-2, "WINDOWS_UWP");
 				LUA->PushNumber(rt::midi::RtMidi::Api::ANDROID_AMIDI);
 				LUA->SetField(-2, "ANDROID_AMIDI");
+				LUA->PushNumber(rt::midi::RtMidi::Api::WINDOWS_MIDI_SERVICES);
+				LUA->SetField(-2, "WINDOWS_MIDI_SERVICES");
 				LUA->PushNumber(rt::midi::RtMidi::Api::NUM_APIS);
 				LUA->SetField(-2, "NUM_APIS");
 			LUA->SetField(-2, "API");
