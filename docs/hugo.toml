@@ -20,7 +20,7 @@ enableRobotsTXT = false
 
 [params]
   geekdocSubtitle = "Realtime MIDI for Garry's Mod"
-  geekdocCollapseAllSections = true
+  geekdocCollapseAllSections = false
 
 [[more]]
   name = "View Source"

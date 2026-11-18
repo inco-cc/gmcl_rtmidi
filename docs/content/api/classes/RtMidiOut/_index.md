@@ -1,5 +1,6 @@
 ---
 title: RtMidiOut
+geekdocCollapseSection: true
 ---
 
 The `RtMidiOut` class is used to send messages to realtime MIDI devices.

@@ -1,5 +1,6 @@
 ---
 title: RtMidiIn
+geekdocCollapseSection: true
 ---
 
 The `RtMidiIn` class is used to receive messages from realtime MIDI devices.
